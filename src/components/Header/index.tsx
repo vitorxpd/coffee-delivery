@@ -1,5 +1,5 @@
-import * as S from "./styles";
+import * as S from './styles'
 
 export function Header() {
-    return <S.HeaderContainer>Header</S.HeaderContainer>
+  return <S.HeaderContainer>Header</S.HeaderContainer>
 }
