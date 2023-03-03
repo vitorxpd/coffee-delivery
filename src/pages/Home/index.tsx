@@ -1,7 +1,8 @@
+import { Stamps } from './components/Stamps'
+import { CoffeeCard } from './components/CoffeeCard'
+
 import * as S from './styles'
 import banner from '../../assets/coffee-delivery-banner.svg'
-import { StampsContainer } from './components/StampsContainer'
-import { CoffeeCard } from './components/CoffeeCard'
 
 export function Home() {
   return (
@@ -13,7 +14,7 @@ export function Home() {
             Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
             hora
           </p>
-          <StampsContainer />
+          <Stamps />
         </S.LeftArea>
         <img src={banner} alt="" />
       </S.MainArea>

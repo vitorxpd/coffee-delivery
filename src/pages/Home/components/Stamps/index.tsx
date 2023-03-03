@@ -2,7 +2,7 @@ import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 
 import * as S from './styles'
 
-export function StampsContainer() {
+export function Stamps() {
   return (
     <S.StampsContainer>
       <S.StampItem variant="yellow-dark" customSize={true}>
