@@ -31,6 +31,7 @@ export const LocationContainer = styled(BaseContainer)`
   span {
     font-size: ${pxToRem(14)};
     font-weight: 400;
+    line-height: 1.3;
     color: ${(props) => props.theme['purple-dark']};
   }
 `
