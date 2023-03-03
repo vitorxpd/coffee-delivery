@@ -1,5 +1,6 @@
 {
   "name": "ignite-coffee-delivery",
+  "description": "Desafio da trilha ReactJS",
   "private": true,
   "version": "0.0.0",
   "type": "module",
