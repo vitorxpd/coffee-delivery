@@ -112,6 +112,7 @@ export const Counter = styled.div`
     width: 20px;
     border: 0;
     color: ${(props) => props.theme['base-title']};
+    text-align: center;
   }
 `
 
