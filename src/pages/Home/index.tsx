@@ -1,10 +1,15 @@
 import { Stamps } from './components/Stamps'
 import { CoffeeCard } from './components/CoffeeCard'
 
+import { useContext } from 'react'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
+
 import * as S from './styles'
 import banner from '../../assets/coffee-delivery-banner.svg'
 
 export function Home() {
+  const { coffees } = useContext(CoffeesContext)
+
   return (
     <S.HomeContainer>
       <S.MainArea>
@@ -21,20 +26,9 @@ export function Home() {
       <S.CoffeesListContainer>
         <h2>Nossos cafés</h2>
         <ul>
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
+          {coffees.map((coffee) => {
+            return <CoffeeCard key={coffee.id} id={coffee.id} />
+          })}
         </ul>
       </S.CoffeesListContainer>
     </S.HomeContainer>

@@ -34,6 +34,7 @@ export const CardContainer = styled.li`
 export const TagsContainer = styled.div`
   margin-top: ${pxToRem(16)};
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: ${pxToRem(12)};
