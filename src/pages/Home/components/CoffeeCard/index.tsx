@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+import { priceFormatter } from '../../../../utils/priceFormatter'
 
 import * as S from './styles'
-import { priceFormatter } from '../../../../utils/priceFormatter'
 
 interface CoffeeCardProps {
   id: number
