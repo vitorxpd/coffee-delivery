@@ -4,16 +4,17 @@ import { Router } from './Router'
 
 import { defaultTheme } from './styles/themes/defaultTheme'
 import { GlobalStyle } from './styles/global'
+import { CoffeesContextProvider } from './contexts/CoffeesContext'
 
 export function App() {
   return (
-    <>
-      <ThemeProvider theme={defaultTheme}>
-        <BrowserRouter>
+    <ThemeProvider theme={defaultTheme}>
+      <BrowserRouter>
+        <CoffeesContextProvider>
           <Router />
-        </BrowserRouter>
-        <GlobalStyle />
-      </ThemeProvider>
-    </>
+        </CoffeesContextProvider>
+      </BrowserRouter>
+      <GlobalStyle />
+    </ThemeProvider>
   )
 }
