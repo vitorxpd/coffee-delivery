@@ -1,51 +1,68 @@
-import { createContext, PropsWithChildren, useState } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
+import { coffees, CoffeeProps } from '../data/coffees'
 
-import expressoTradicional from '../assets/expresso.svg'
-import cubano from '../assets/cubano.svg'
-
-interface CoffeesProps {
+interface CartItemProps {
   id: number
-  name: string
-  description: string
-  imageUrl: string
-  price: number
-  tags: string[]
-  quantity: number
+  amount: number
+}
+
+interface CoffeesStateProps {
+  coffees: CoffeeProps[]
+  cartItems: CartItemProps[]
+  cartQuantity: number
 }
 
 interface CoffeesContextProps {
-  coffees: CoffeesProps[]
-  cartQuantity: number
+  coffeesState: CoffeesStateProps
+  addCoffeeToCart: (id: number, amount: number) => void
+}
+
+interface CoffeesContextProviderProps {
+  children: ReactNode
 }
 
 export const CoffeesContext = createContext({} as CoffeesContextProps)
 
-export function CoffeesContextProvider({ children }: PropsWithChildren) {
-  const [coffees, setCoffees] = useState<CoffeesProps[]>([
-    {
-      id: 1,
-      name: 'Expresso Tradicional',
-      description: 'O tradicional café feito com água quente e grãos moídos',
-      imageUrl: expressoTradicional,
-      price: 9.9,
-      tags: ['Tradicional'],
-      quantity: 3,
+export function CoffeesContextProvider({
+  children,
+}: CoffeesContextProviderProps) {
+  const [coffeesState, dispatch] = useReducer(
+    (state: CoffeesStateProps, action: any) => {
+      if (action.type === 'ADD_COFFEE') {
+        const id = action.payload.id
+        const amount = action.payload.amount
+
+        return {
+          ...state,
+          cartItems: [...state.cartItems, { id, amount }],
+        }
+      }
+
+      return state
     },
     {
-      id: 5,
-      name: 'Cubano',
-      description:
-        'Drink gelado de café expresso com rum, creme de leite e hortelã',
-      imageUrl: cubano,
-      price: 9.9,
-      tags: ['Especial', 'Alcoólico', 'Gelado'],
-      quantity: 3,
+      coffees,
+      cartItems: [],
+      cartQuantity: 0,
     },
-  ])
-  const [cartQuantity, setCartQuantity] = useState<number>(0)
+  )
+
+  function addCoffeeToCart(id: number, amount: number) {
+    dispatch({
+      type: 'ADD_COFFEE',
+      payload: {
+        id,
+        amount,
+      },
+    })
+  }
+
+  useEffect(() => {
+    console.log(coffeesState)
+  }, [coffeesState])
 
   return (
-    <CoffeesContext.Provider value={{ cartQuantity, coffees }}>
+    <CoffeesContext.Provider value={{ coffeesState, addCoffeeToCart }}>
       {children}
     </CoffeesContext.Provider>
   )

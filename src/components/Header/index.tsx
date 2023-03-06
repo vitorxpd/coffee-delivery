@@ -7,7 +7,9 @@ import logo from '../../assets/coffee-delivery-logo.svg'
 import { useContext } from 'react'
 
 export function Header() {
-  const { cartQuantity } = useContext(CoffeesContext)
+  const { coffeesState } = useContext(CoffeesContext)
+
+  const { cartQuantity } = coffeesState
 
   return (
     <S.HeaderContainer>

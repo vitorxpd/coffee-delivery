@@ -10,22 +10,32 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({ id }: CoffeeCardProps) {
-  const [counter, setCounter] = useState<number>(1)
+  const [amount, setAmount] = useState<number>(1)
 
-  const { coffees } = useContext(CoffeesContext)
+  const { coffeesState, addCoffeeToCart } = useContext(CoffeesContext)
 
-  const coffeeIndex = coffees.findIndex((coffee) => coffee.id === id)
+  const { coffees, cartItems } = coffeesState
 
-  const coffee = coffees[coffeeIndex]
+  const currentCoffeeIndex = coffees.findIndex((coffee) => coffee.id === id)
+
+  const currentCartItemIndex = cartItems.findIndex((item) => item.id === id)
+
+  const coffee = coffees[currentCoffeeIndex]
 
   const formattedPrice = priceFormatter(coffee.price)
 
   function handleDecrementQuantity() {
-    if (counter >= 1) setCounter((state) => state - 1)
+    if (amount >= 1) setAmount((state) => state - 1)
   }
 
   function handleIncrementQuantity() {
-    if (counter < coffee.quantity) setCounter((state) => state + 1)
+    if (amount < coffee.quantity) setAmount((state) => state + 1)
+  }
+
+  function handleAddCoffeeToCart() {
+    currentCartItemIndex === -1
+      ? addCoffeeToCart(coffee.id, amount)
+      : alert('O produto já foi adicionado!')
   }
 
   return (
@@ -51,12 +61,12 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
             <button onClick={handleDecrementQuantity}>
               <Minus size={14} />
             </button>
-            <input type="number" value={counter} disabled />
+            <input type="number" value={amount} disabled />
             <button onClick={handleIncrementQuantity}>
               <Plus size={14} />
             </button>
           </S.Counter>
-          <S.CartButton>
+          <S.CartButton onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={22} />
           </S.CartButton>
         </S.ActionsContainer>
