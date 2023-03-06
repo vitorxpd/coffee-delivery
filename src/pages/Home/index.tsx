@@ -10,6 +10,8 @@ import banner from '../../assets/coffee-delivery-banner.svg'
 export function Home() {
   const { coffeesState } = useContext(CoffeesContext)
 
+  const coffees = coffeesState.coffees
+
   return (
     <S.HomeContainer>
       <S.MainArea>
@@ -26,7 +28,7 @@ export function Home() {
       <S.CoffeesListContainer>
         <h2>Nossos cafés</h2>
         <ul>
-          {coffeesState.coffees.map((coffee) => {
+          {coffees.map((coffee) => {
             return <CoffeeCard key={coffee.id} id={coffee.id} />
           })}
         </ul>
