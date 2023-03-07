@@ -13,7 +13,9 @@ export function Header() {
 
   return (
     <S.HeaderContainer>
-      <img src={logo} alt="" />
+      <Link to="/">
+        <img src={logo} alt="" />
+      </Link>
       <S.HeaderRight>
         <S.LocationContainer>
           <MapPin size={22} />
