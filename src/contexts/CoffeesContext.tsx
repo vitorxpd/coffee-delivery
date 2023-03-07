@@ -35,6 +35,7 @@ export function CoffeesContextProvider({
         return {
           ...state,
           cartItems: [...state.cartItems, { id, amount }],
+          cartQuantity: state.cartQuantity + 1,
         }
       }
 
