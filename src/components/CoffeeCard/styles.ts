@@ -14,21 +14,6 @@ export const CardContainer = styled.li`
   img {
     margin-top: ${pxToRem(-20)};
   }
-
-  > h3 {
-    margin-top: ${pxToRem(16)};
-    font-size: ${pxToRem(20)};
-    font-weight: 700;
-    line-height: 1.3;
-    color: ${(props) => props.theme['base-subtitle']};
-  }
-
-  p {
-    margin-top: ${pxToRem(8)};
-    font-size: 14px;
-    line-height: 1.3;
-    color: ${(props) => props.theme['base-label']};
-  }
 `
 
 export const TagsContainer = styled.div`
@@ -38,17 +23,32 @@ export const TagsContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: ${pxToRem(12)};
+`
 
-  span {
-    padding: ${pxToRem(4)} ${pxToRem(8)};
-    font-size: ${pxToRem(10)};
-    font-weight: 700;
-    line-height: 1.3;
-    text-transform: uppercase;
-    background: ${(props) => props.theme['yellow-light']};
-    color: ${(props) => props.theme['yellow-dark']};
-    border-radius: 100px;
-  }
+export const TagContent = styled.span`
+  padding: ${pxToRem(4)} ${pxToRem(8)};
+  font-size: ${pxToRem(10)};
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  background: ${(props) => props.theme['yellow-light']};
+  color: ${(props) => props.theme['yellow-dark']};
+  border-radius: 100px;
+`
+
+export const Title = styled.h3`
+  margin-top: ${pxToRem(16)};
+  font-size: ${pxToRem(20)};
+  font-weight: 700;
+  line-height: 1.3;
+  color: ${(props) => props.theme['base-subtitle']};
+`
+
+export const Subtitle = styled.p`
+  margin-top: ${pxToRem(8)};
+  font-size: 14px;
+  line-height: 1.3;
+  color: ${(props) => props.theme['base-label']};
 `
 
 export const BottomContainer = styled.div`
@@ -62,22 +62,22 @@ export const PriceContainer = styled.div`
   color: ${(props) => props.theme['base-text']};
   display: flex;
   align-items: baseline;
+`
 
-  span {
-    font-size: ${pxToRem(14)};
-    line-height: 18.2px;
+export const PrefixPrice = styled.span`
+  font-size: ${pxToRem(14)};
+  line-height: 18.2px;
 
-    ::after {
-      content: '-';
-      opacity: 0;
-    }
+  ::after {
+    content: '-';
+    opacity: 0;
   }
+`
 
-  h3 {
-    font-size: ${pxToRem(24)};
-    font-weight: 800;
-    line-height: 31.2px;
-  }
+export const Price = styled.h4`
+  font-size: ${pxToRem(24)};
+  font-weight: 800;
+  line-height: 31.2px;
 `
 
 export const ActionsContainer = styled.div`
@@ -92,28 +92,34 @@ export const Counter = styled.div`
   gap: ${pxToRem(4)};
   border-radius: 6px;
   background: ${(props) => props.theme['base-button']};
+`
 
-  button {
-    width: ${pxToRem(14)};
-    height: ${pxToRem(14)};
-    background: transparent;
-    border: none;
-    cursor: pointer;
+export const CounterButton = styled.button`
+  width: ${pxToRem(14)};
+  height: ${pxToRem(14)};
+  background: transparent;
+  border: none;
+  cursor: pointer;
 
-    &:hover svg {
-      color: ${(props) => props.theme['purple-dark']};
-    }
-
-    svg {
-      color: ${(props) => props.theme.purple};
-    }
+  &:hover svg {
+    color: ${(props) => props.theme['purple-dark']};
   }
 
-  input {
-    width: 20px;
-    border: 0;
-    color: ${(props) => props.theme['base-title']};
-    text-align: center;
+  svg {
+    color: ${(props) => props.theme.purple};
+  }
+`
+
+export const CounterInput = styled.input`
+  width: 20px;
+  border: 0;
+  color: ${(props) => props.theme['base-title']};
+  text-align: center;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 `
 

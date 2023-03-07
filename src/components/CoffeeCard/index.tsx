@@ -25,7 +25,7 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
   const formattedPrice = priceFormatter(coffee.price)
 
   function handleDecrementQuantity() {
-    if (amount >= 1) setAmount((state) => state - 1)
+    if (amount > 1) setAmount((state) => state - 1)
   }
 
   function handleIncrementQuantity() {
@@ -43,28 +43,28 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
       <img src={coffee.imageUrl} alt="" />
       <S.TagsContainer>
         {coffee.tags.map((tag) => {
-          return <span key={tag}>{tag}</span>
+          return <S.TagContent key={tag}>{tag}</S.TagContent>
         })}
       </S.TagsContainer>
-      <h3>{coffee.name}</h3>
-      <p>{coffee.description}</p>
+      <S.Title>{coffee.name}</S.Title>
+      <S.Subtitle>{coffee.description}</S.Subtitle>
       <S.BottomContainer>
         <S.PriceContainer>
-          <span>
+          <S.PrefixPrice>
             {formattedPrice[0]}
             {formattedPrice[1]}
-          </span>
-          <h3>{formattedPrice.replace('R$', '')}</h3>
+          </S.PrefixPrice>
+          <S.Price>{formattedPrice.replace('R$', '')}</S.Price>
         </S.PriceContainer>
         <S.ActionsContainer>
           <S.Counter>
-            <button onClick={handleDecrementQuantity}>
+            <S.CounterButton onClick={handleDecrementQuantity}>
               <Minus size={14} />
-            </button>
-            <input type="number" value={amount} disabled />
-            <button onClick={handleIncrementQuantity}>
+            </S.CounterButton>
+            <S.CounterInput type="number" value={amount} disabled />
+            <S.CounterButton onClick={handleIncrementQuantity}>
               <Plus size={14} />
-            </button>
+            </S.CounterButton>
           </S.Counter>
           <S.CartButton onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={22} />
