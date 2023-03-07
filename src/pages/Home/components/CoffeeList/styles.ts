@@ -18,5 +18,5 @@ export const ListWrapper = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: ${pxToRem(32)};
 `
