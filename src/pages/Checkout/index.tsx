@@ -1,3 +1,5 @@
+import { CartItems } from './components/CartItems'
+
 import { FormInputs } from './components/FormInputs'
 import { PaymentMethods } from './components/PaymentMethods'
 
@@ -14,6 +16,7 @@ export function Checkout() {
         </S.RegisterContainer>
         <S.CheckoutItemsContainer>
           <S.FormTitle>Cafés selecionados</S.FormTitle>
+          <CartItems />
         </S.CheckoutItemsContainer>
       </form>
     </S.CheckoutContainer>
