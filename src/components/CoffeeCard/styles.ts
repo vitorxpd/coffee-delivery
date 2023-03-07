@@ -120,6 +120,7 @@ export const CounterInput = styled.input`
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    margin: 0;
   }
 `
 
