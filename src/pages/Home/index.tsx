@@ -1,6 +1,6 @@
 import { Stamps } from './components/Stamps'
 import { MainTitle } from './components/MainTitle'
-import { CoffeesList } from './components/CoffeesList'
+import { CoffeeList } from './components/CoffeeList'
 
 import * as S from './styles'
 import banner from '../../assets/coffee-delivery-banner.svg'
@@ -15,7 +15,7 @@ export function Home() {
         </S.LeftArea>
         <img src={banner} alt="" />
       </S.MainArea>
-      <CoffeesList />
+      <CoffeeList />
     </S.HomeContainer>
   )
 }

@@ -4,7 +4,7 @@ import { CoffeeCard } from '../../../../components/CoffeeCard'
 
 import * as S from './styles'
 
-export function CoffeesList() {
+export function CoffeeList() {
   const { coffeesState } = useContext(CoffeesContext)
 
   const coffees = coffeesState.coffees
