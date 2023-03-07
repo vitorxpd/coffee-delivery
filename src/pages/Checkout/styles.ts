@@ -24,3 +24,36 @@ export const RegisterContainer = styled.div`
 export const CheckoutItemsContainer = styled.div`
   width: ${pxToRem(448)};
 `
+
+export const CartItemsContainer = styled.div`
+  margin-top: ${pxToRem(15)};
+  padding: ${pxToRem(40)};
+  display: flex;
+  flex-direction: column;
+  gap: ${pxToRem(24)};
+  background: ${(props) => props.theme['base-card']};
+  border-radius: 6px 44px;
+`
+
+export const SubmitButton = styled.button`
+  padding: ${pxToRem(12)} ${pxToRem(8)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: ${(props) => props.theme.yellow};
+  border: 0;
+  border-radius: 6px;
+
+  font-weight: 700;
+  font-size: ${pxToRem(14)};
+  line-height: 1.6;
+  color: ${(props) => props.theme.white};
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
+`
