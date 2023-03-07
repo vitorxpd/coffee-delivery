@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { CoffeesContext } from '../../../../contexts/CoffeesContext'
-import { priceFormatter } from '../../../../utils/formatter'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
+import { priceFormatter } from '../../utils/formatter'
 
 import * as S from './styles'
 
