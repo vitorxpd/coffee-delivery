@@ -26,8 +26,11 @@ export function CartItems() {
     return (
       <>
         <img src={coffee.imageUrl} alt="" />
-        <div>{coffee.name}</div>
-        <strong>{formattedPriceAmount}</strong>
+        <S.MainCoffeeContainer>
+          <S.CoffeeName>{coffee.name}</S.CoffeeName>
+          <S.ActionsContainer>oi</S.ActionsContainer>
+        </S.MainCoffeeContainer>
+        <S.CoffeePrice>{formattedPriceAmount}</S.CoffeePrice>
       </>
     )
   }
@@ -37,9 +40,9 @@ export function CartItems() {
       <S.CoffeeList>
         {cartItems.map((item) => {
           return (
-            <li key={item.id}>
+            <S.CoffeeItem key={item.id}>
               {cartMount({ id: item.id, amount: item.amount })}
-            </li>
+            </S.CoffeeItem>
           )
         })}
       </S.CoffeeList>
