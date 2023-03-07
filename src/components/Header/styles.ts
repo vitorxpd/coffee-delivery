@@ -27,18 +27,19 @@ export const LocationContainer = styled(BaseContainer)`
   svg {
     color: ${(props) => props.theme.purple};
   }
+`
 
-  span {
-    font-size: ${pxToRem(14)};
-    font-weight: 400;
-    line-height: 1.3;
-    color: ${(props) => props.theme['purple-dark']};
-  }
+export const LocationText = styled.span`
+  font-size: ${pxToRem(14)};
+  font-weight: 400;
+  line-height: 1.3;
+  color: ${(props) => props.theme['purple-dark']};
 `
 
 export const CartContainer = styled(BaseContainer)`
   position: relative;
   background: ${(props) => props.theme['yellow-light']};
+  cursor: pointer;
 
   svg {
     color: ${(props) => props.theme['yellow-dark']};
@@ -56,10 +57,10 @@ export const BadgeContainer = styled.div`
   top: ${pxToRem(-8)};
   right: ${pxToRem(-8)};
   position: absolute;
+`
 
-  span {
-    font-size: ${pxToRem(12)};
-    font-weight: 700;
-    color: ${(props) => props.theme.white};
-  }
+export const AmountText = styled.span`
+  font-size: ${pxToRem(12)};
+  font-weight: 700;
+  color: ${(props) => props.theme.white};
 `

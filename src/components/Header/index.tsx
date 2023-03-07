@@ -1,5 +1,5 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CoffeesContext } from '../../contexts/CoffeesContext'
 import { useContext } from 'react'
 
@@ -11,6 +11,12 @@ export function Header() {
 
   const { cartQuantity } = coffeesState
 
+  const navigate = useNavigate()
+
+  function handleCartNavigate() {
+    navigate('/checkout')
+  }
+
   return (
     <S.HeaderContainer>
       <Link to="/">
@@ -19,18 +25,16 @@ export function Header() {
       <S.HeaderRight>
         <S.LocationContainer>
           <MapPin size={22} />
-          <span>Porto Alegre, RS</span>
+          <S.LocationText>Porto Alegre, RS</S.LocationText>
         </S.LocationContainer>
-        <Link to="/checkout">
-          <S.CartContainer>
-            <ShoppingCart size={22} />
-            {cartQuantity >= 1 && (
-              <S.BadgeContainer>
-                <span>{cartQuantity}</span>
-              </S.BadgeContainer>
-            )}
-          </S.CartContainer>
-        </Link>
+        <S.CartContainer onClick={handleCartNavigate}>
+          <ShoppingCart size={22} />
+          {cartQuantity >= 1 && (
+            <S.BadgeContainer>
+              <S.AmountText>{cartQuantity}</S.AmountText>
+            </S.BadgeContainer>
+          )}
+        </S.CartContainer>
       </S.HeaderRight>
     </S.HeaderContainer>
   )
