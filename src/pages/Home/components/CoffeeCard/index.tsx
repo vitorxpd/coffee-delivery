@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react'
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { CoffeesContext } from '../../contexts/CoffeesContext'
-import { priceFormatter } from '../../utils/formatter'
+import { ShoppingCart } from 'phosphor-react'
+import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
+import { Counter } from './Counter'
 
 interface CoffeeCardProps {
   id: number
@@ -24,11 +25,11 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
 
   const formattedPrice = priceFormatter(coffee.price)
 
-  function handleDecrementQuantity() {
+  function decrementAmount() {
     if (amount > 1) setAmount((state) => state - 1)
   }
 
-  function handleIncrementQuantity() {
+  function incrementAmount() {
     if (amount < coffee.quantity) setAmount((state) => state + 1)
   }
 
@@ -57,15 +58,11 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
           <S.Price>{formattedPrice.replace('R$', '')}</S.Price>
         </S.PriceContainer>
         <S.ActionsContainer>
-          <S.Counter>
-            <S.CounterButton onClick={handleDecrementQuantity}>
-              <Minus size={14} />
-            </S.CounterButton>
-            <S.CounterInput type="number" value={amount} disabled />
-            <S.CounterButton onClick={handleIncrementQuantity}>
-              <Plus size={14} />
-            </S.CounterButton>
-          </S.Counter>
+          <Counter
+            amount={amount}
+            onDecrementAmount={decrementAmount}
+            onIncrementAmount={incrementAmount}
+          />
           <S.CartButton onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={22} />
           </S.CartButton>

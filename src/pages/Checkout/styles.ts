@@ -35,6 +35,13 @@ export const CartItemsContainer = styled.div`
   border-radius: 6px 44px;
 `
 
+export const CartItemsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: ${pxToRem(24)};
+  list-style: none;
+`
+
 export const SubmitButton = styled.button`
   padding: ${pxToRem(12)} ${pxToRem(8)};
   display: flex;

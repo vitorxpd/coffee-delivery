@@ -1,13 +1,6 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const CartItemsList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: ${pxToRem(24)};
-  list-style: none;
-`
-
 export const CartItem = styled.li`
   padding: ${pxToRem(8)} ${pxToRem(4)} ${pxToRem(24)} ${pxToRem(4)};
   display: flex;

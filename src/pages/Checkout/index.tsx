@@ -1,4 +1,6 @@
-import { CartItems } from './components/CartItems'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
+import { CartItem } from './components/CartItem'
 import { CartTotalizer } from './components/CartTotalizer'
 import { FormInputs } from './components/FormInputs'
 import { PaymentMethods } from './components/PaymentMethods'
@@ -6,6 +8,9 @@ import { PaymentMethods } from './components/PaymentMethods'
 import * as S from './styles'
 
 export function Checkout() {
+  const { coffeesState } = useContext(CoffeesContext)
+
+  const { cartItems } = coffeesState
   function handleSubmit(event: any) {
     event.preventDefault()
   }
@@ -21,7 +26,13 @@ export function Checkout() {
         <S.CheckoutItemsContainer>
           <S.FormTitle>Cafés selecionados</S.FormTitle>
           <S.CartItemsContainer>
-            <CartItems />
+            <S.CartItemsList>
+              {cartItems.map((item) => {
+                return (
+                  <CartItem id={item.id} amount={item.amount} key={item.id} />
+                )
+              })}
+            </S.CartItemsList>
             <CartTotalizer />
             <S.SubmitButton type="submit">Confirmar pedido</S.SubmitButton>
           </S.CartItemsContainer>

@@ -1,6 +1,7 @@
-import { Minus, Plus, Trash } from 'phosphor-react'
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+import { Counter } from './Counter'
+import { Trash } from 'phosphor-react'
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
@@ -27,15 +28,7 @@ export function CartItem({ id, amount }: CartItemProps) {
       <S.MainCoffeeContainer>
         <S.CoffeeName>{coffee.name}</S.CoffeeName>
         <S.ActionsContainer>
-          <S.Counter>
-            <S.CounterButton>
-              <Minus size={14} />
-            </S.CounterButton>
-            <S.CounterInput type="number" value={amount} disabled />
-            <S.CounterButton>
-              <Plus size={14} />
-            </S.CounterButton>
-          </S.Counter>
+          <Counter />
           <S.RemoveButton>
             <Trash size={16} />
             <S.RemoveButtonText>Remover</S.RemoveButtonText>
