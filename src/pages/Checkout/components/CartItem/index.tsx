@@ -28,7 +28,7 @@ export function CartItem({ id, amount }: CartItemProps) {
       <S.MainCoffeeContainer>
         <S.CoffeeName>{coffee.name}</S.CoffeeName>
         <S.ActionsContainer>
-          <Counter />
+          <Counter coffeeId={id} />
           <S.RemoveButton>
             <Trash size={16} />
             <S.RemoveButtonText>Remover</S.RemoveButtonText>
