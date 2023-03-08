@@ -35,7 +35,7 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
 
   function handleAddCoffeeToCart() {
     currentCartItemIndex === -1
-      ? addCoffeeToCart(coffee.id, amount)
+      ? addCoffeeToCart(coffee.id, coffee.price, amount)
       : alert('O produto já foi adicionado!')
   }
 
