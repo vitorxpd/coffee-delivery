@@ -8,9 +8,9 @@ interface CartItemProps {
 }
 
 interface Totalizers {
-  totalItems: number;
-  shipping: number;
-  total: number;
+  totalItems: number
+  shipping: number
+  total: number
 }
 
 interface CoffeesStateProps {
@@ -23,6 +23,7 @@ interface CoffeesStateProps {
 interface CoffeesContextProps {
   coffeesState: CoffeesStateProps
   addCoffeeToCart: (id: number, price: number, amount: number) => void
+  removeCoffee: (id: number) => void
 }
 
 interface CoffeesContextProviderProps {
@@ -34,17 +35,29 @@ export const CoffeesContext = createContext({} as CoffeesContextProps)
 export function CoffeesContextProvider({
   children,
 }: CoffeesContextProviderProps) {
- 
-
   const [coffeesState, dispatch] = useReducer(
     (state: CoffeesStateProps, action: any) => {
+      const incrementCartQuantity = state.cartItems.length + 1
+      const decrementCartQuantity = state.cartItems.length - 1
+
       if (action.type === 'ADD_COFFEE') {
         const { id, price, amount } = action.payload
-       
+
         return {
           ...state,
           cartItems: [...state.cartItems, { id, price, amount }],
-          cartQuantity: state.cartQuantity + 1,
+          cartQuantity: incrementCartQuantity,
+        }
+      }
+
+      if (action.type === 'REMOVE_COFFEE') {
+        const { id } = action.payload
+        const filteredCoffees = state.cartItems.filter((item) => item.id !== id)
+
+        return {
+          ...state,
+          cartItems: filteredCoffees,
+          cartQuantity: decrementCartQuantity,
         }
       }
 
@@ -57,8 +70,8 @@ export function CoffeesContextProvider({
       totalizers: {
         totalItems: 0,
         shipping: 3.5,
-        total: 0
-    }
+        total: 0,
+      },
     },
   )
 
@@ -73,13 +86,22 @@ export function CoffeesContextProvider({
     })
   }
 
+  function removeCoffee(id: number) {
+    dispatch({
+      type: 'REMOVE_COFFEE',
+      payload: {
+        id,
+      },
+    })
+  }
+
   useEffect(() => {
     console.log(coffeesState)
   }, [coffeesState])
 
   return (
     <CoffeesContext.Provider
-      value={{ coffeesState, addCoffeeToCart }}
+      value={{ coffeesState, addCoffeeToCart, removeCoffee }}
     >
       {children}
     </CoffeesContext.Provider>

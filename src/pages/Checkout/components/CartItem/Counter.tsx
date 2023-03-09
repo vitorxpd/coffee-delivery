@@ -1,15 +1,14 @@
 import { Minus, Plus } from 'phosphor-react'
-import { useContext } from 'react';
-import { CoffeesContext } from '../../../../contexts/CoffeesContext';
+import { useContext } from 'react'
+import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 
 import * as S from './styles'
 
 interface CounterProps {
-  coffeeId: number;
+  coffeeId: number
 }
 
 export function Counter({ coffeeId }: CounterProps) {
-
   const { coffeesState } = useContext(CoffeesContext)
 
   const cartItems = coffeesState.cartItems
@@ -18,11 +17,9 @@ export function Counter({ coffeeId }: CounterProps) {
 
   const cartItem = cartItems[currentCartIndex]
 
-  function handleDecrementAmount() {
-  }
+  function handleDecrementAmount() {}
 
-  function handleIncrementAmount() {
-  }
+  function handleIncrementAmount() {}
 
   return (
     <S.Counter>

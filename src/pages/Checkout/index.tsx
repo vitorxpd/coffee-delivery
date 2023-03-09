@@ -11,6 +11,7 @@ export function Checkout() {
   const { coffeesState } = useContext(CoffeesContext)
 
   const { cartItems } = coffeesState
+
   function handleSubmit(event: any) {
     event.preventDefault()
   }
