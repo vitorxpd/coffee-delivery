@@ -93,6 +93,21 @@ export function CoffeesContextProvider({
         }
       }
 
+      if (action.type === 'UPDATE_TOTALIZERS') {
+        const totalizer = state.cartItems.reduce((acc, item) => {
+          return acc + item.price * item.amount
+        }, 0)
+
+        return {
+          ...state,
+          totalizers: {
+            totalItems: totalizer,
+            shipping: 3.5,
+            total: totalizer + state.totalizers.shipping,
+          },
+        }
+      }
+
       return state
     },
     {
@@ -145,9 +160,15 @@ export function CoffeesContextProvider({
     })
   }
 
+  function updateTotalizers() {
+    dispatch({
+      type: 'UPDATE_TOTALIZERS',
+    })
+  }
+
   useEffect(() => {
-    console.log(coffeesState)
-  }, [coffeesState])
+    updateTotalizers()
+  }, [coffeesState.cartItems])
 
   return (
     <CoffeesContext.Provider

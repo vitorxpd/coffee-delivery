@@ -7,27 +7,23 @@ import * as S from './styles'
 export function CartTotalizer() {
   const { coffeesState } = useContext(CoffeesContext)
 
-  const totalizers = coffeesState.totalizers
-
-  const formattedTotalItemsPrice = priceFormatter(totalizers.totalItems)
-
-  const formattedShippingPrice = priceFormatter(totalizers.shipping)
-
-  const formattedTotalPrice = priceFormatter(totalizers.total)
+  const { totalizers } = coffeesState
 
   return (
     <S.CartTotalizerContainer>
       <S.Container>
         <S.TotalItemsText>Total de itens</S.TotalItemsText>
-        <S.TotalItemsPrice>{formattedTotalItemsPrice}</S.TotalItemsPrice>
+        <S.TotalItemsPrice>
+          {priceFormatter(totalizers.totalItems)}
+        </S.TotalItemsPrice>
       </S.Container>
       <S.Container>
         <S.ShippingText>Entrega</S.ShippingText>
-        <S.ShippingPrice>{formattedShippingPrice}</S.ShippingPrice>
+        <S.ShippingPrice>{priceFormatter(totalizers.shipping)}</S.ShippingPrice>
       </S.Container>
       <S.Container>
         <S.Highlight>Total</S.Highlight>
-        <S.Highlight>{formattedTotalPrice}</S.Highlight>
+        <S.Highlight>{priceFormatter(totalizers.total)}</S.Highlight>
       </S.Container>
     </S.CartTotalizerContainer>
   )
