@@ -29,9 +29,7 @@ export function Checkout() {
           <S.CartItemsContainer>
             <S.CartItemsList>
               {cartItems.map((item) => {
-                return (
-                  <CartItem id={item.id} amount={item.amount} key={item.id} />
-                )
+                return <CartItem id={item.id} key={item.id} />
               })}
             </S.CartItemsList>
             <CartTotalizer />

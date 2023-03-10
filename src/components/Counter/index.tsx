@@ -2,25 +2,24 @@ import { Minus, Plus } from 'phosphor-react'
 
 import * as S from './styles'
 
-interface CounterCardProps {
+interface CounterProps {
   amount: number
-  onDecrementAmount: () => void
-  onIncrementAmount: () => void
+  onChangeDecrementAmount: () => void
+  onChangeIncrementAmount: () => void
 }
 
 export function Counter({
   amount,
-  onDecrementAmount,
-  onIncrementAmount,
-}: CounterCardProps) {
+  onChangeDecrementAmount,
+  onChangeIncrementAmount,
+}: CounterProps) {
   function handleDecrementAmount() {
-    onDecrementAmount()
+    onChangeDecrementAmount()
   }
 
   function handleIncrementAmount() {
-    onIncrementAmount()
+    onChangeIncrementAmount()
   }
-
   return (
     <S.Counter>
       <S.CounterButton onClick={handleDecrementAmount}>

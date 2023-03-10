@@ -85,45 +85,6 @@ export const ActionsContainer = styled.div`
   gap: ${pxToRem(8)};
 `
 
-export const Counter = styled.div`
-  padding: ${pxToRem(8)};
-  display: flex;
-  align-items: center;
-  gap: ${pxToRem(4)};
-  border-radius: 6px;
-  background: ${(props) => props.theme['base-button']};
-`
-
-export const CounterButton = styled.button`
-  width: ${pxToRem(14)};
-  height: ${pxToRem(14)};
-  background: transparent;
-  border: none;
-  cursor: pointer;
-
-  &:hover svg {
-    color: ${(props) => props.theme['purple-dark']};
-  }
-
-  svg {
-    color: ${(props) => props.theme.purple};
-  }
-`
-
-export const CounterInput = styled.input`
-  width: 20px;
-  border: 0;
-  color: ${(props) => props.theme['base-title']};
-  text-align: center;
-  -moz-appearance: textfield;
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`
-
 export const CartButton = styled.button`
   padding: ${pxToRem(8)};
   display: flex;

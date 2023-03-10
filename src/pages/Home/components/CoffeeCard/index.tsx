@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react'
 import { ShoppingCart } from 'phosphor-react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+import { Counter } from '../../../../components/Counter'
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
-import { Counter } from './Counter'
 
 interface CoffeeCardProps {
   id: number
@@ -25,11 +25,11 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
 
   const formattedPrice = priceFormatter(coffee.price)
 
-  function decrementAmount() {
+  function changeDecrementAmount() {
     if (amount > 1) setAmount((state) => state - 1)
   }
 
-  function incrementAmount() {
+  function changeIncrementAmount() {
     if (amount < coffee.quantity) setAmount((state) => state + 1)
   }
 
@@ -60,8 +60,8 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
         <S.ActionsContainer>
           <Counter
             amount={amount}
-            onDecrementAmount={decrementAmount}
-            onIncrementAmount={incrementAmount}
+            onChangeDecrementAmount={changeDecrementAmount}
+            onChangeIncrementAmount={changeIncrementAmount}
           />
           <S.CartButton onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={22} />

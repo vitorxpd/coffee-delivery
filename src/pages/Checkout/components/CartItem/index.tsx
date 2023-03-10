@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
-import { Counter } from './Counter'
+import { Counter } from '../../../../components/Counter'
 import { Trash } from 'phosphor-react'
 import { priceFormatter } from '../../../../utils/formatter'
 
@@ -8,19 +8,31 @@ import * as S from './styles'
 
 interface CartItemProps {
   id: number
-  amount: number
 }
 
-export function CartItem({ id, amount }: CartItemProps) {
-  const { coffeesState, removeCoffee } = useContext(CoffeesContext)
+export function CartItem({ id }: CartItemProps) {
+  const { coffeesState, decrementAmount, incrementAmount, removeCoffee } =
+    useContext(CoffeesContext)
 
-  const { coffees } = coffeesState
+  const { coffees, cartItems } = coffeesState
 
   const currentCoffeeIndex = coffees.findIndex((coffee) => coffee.id === id)
 
+  const currentCartIndex = cartItems.findIndex((item) => item.id === id)
+
   const coffee = coffees[currentCoffeeIndex]
 
-  const formattedPriceAmount = priceFormatter(coffee.price * amount)
+  const cartItem = cartItems[currentCartIndex]
+
+  const formattedPriceAmount = priceFormatter(cartItem.price * cartItem.amount)
+
+  function changeDecrementAmount() {
+    if (cartItem.amount > 1) decrementAmount(id)
+  }
+
+  function changeIncrementAmount() {
+    if (cartItem.amount < coffee.quantity) incrementAmount(id)
+  }
 
   function handleRemoveCoffee() {
     removeCoffee(id)
@@ -32,7 +44,11 @@ export function CartItem({ id, amount }: CartItemProps) {
       <S.MainCoffeeContainer>
         <S.CoffeeName>{coffee.name}</S.CoffeeName>
         <S.ActionsContainer>
-          <Counter coffeeId={id} />
+          <Counter
+            amount={cartItem.amount}
+            onChangeDecrementAmount={changeDecrementAmount}
+            onChangeIncrementAmount={changeIncrementAmount}
+          />
           <S.RemoveButton onClick={handleRemoveCoffee}>
             <Trash size={16} />
             <S.RemoveButtonText>Remover</S.RemoveButtonText>

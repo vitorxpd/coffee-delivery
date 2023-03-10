@@ -23,6 +23,8 @@ interface CoffeesStateProps {
 interface CoffeesContextProps {
   coffeesState: CoffeesStateProps
   addCoffeeToCart: (id: number, price: number, amount: number) => void
+  decrementAmount: (id: number) => void
+  incrementAmount: (id: number) => void
   removeCoffee: (id: number) => void
 }
 
@@ -47,6 +49,36 @@ export function CoffeesContextProvider({
           ...state,
           cartItems: [...state.cartItems, { id, price, amount }],
           cartQuantity: incrementCartQuantity,
+        }
+      }
+
+      if (action.type === 'DECREMENT_AMOUNT') {
+        const { id } = action.payload
+
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item) => {
+            if (item.id === id) {
+              return { ...item, amount: item.amount - 1 }
+            } else {
+              return item
+            }
+          }),
+        }
+      }
+
+      if (action.type === 'INCREMENT_AMOUNT') {
+        const { id } = action.payload
+
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item) => {
+            if (item.id === id) {
+              return { ...item, amount: item.amount + 1 }
+            } else {
+              return item
+            }
+          }),
         }
       }
 
@@ -86,6 +118,24 @@ export function CoffeesContextProvider({
     })
   }
 
+  function decrementAmount(id: number) {
+    dispatch({
+      type: 'DECREMENT_AMOUNT',
+      payload: {
+        id,
+      },
+    })
+  }
+
+  function incrementAmount(id: number) {
+    dispatch({
+      type: 'INCREMENT_AMOUNT',
+      payload: {
+        id,
+      },
+    })
+  }
+
   function removeCoffee(id: number) {
     dispatch({
       type: 'REMOVE_COFFEE',
@@ -101,7 +151,13 @@ export function CoffeesContextProvider({
 
   return (
     <CoffeesContext.Provider
-      value={{ coffeesState, addCoffeeToCart, removeCoffee }}
+      value={{
+        coffeesState,
+        addCoffeeToCart,
+        decrementAmount,
+        incrementAmount,
+        removeCoffee,
+      }}
     >
       {children}
     </CoffeesContext.Provider>
