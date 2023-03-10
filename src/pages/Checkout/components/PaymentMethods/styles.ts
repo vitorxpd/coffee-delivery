@@ -71,7 +71,6 @@ export const RadioLabel = styled.label`
 
 export const TextLabel = styled.span`
   font-size: ${pxToRem(12)};
-  line-height: 1.6;
   color: ${(props) => props.theme['base-text']};
   text-transform: uppercase;
 `
