@@ -44,7 +44,7 @@ export const InputsWrapper = styled.div`
     'bairro cidade uf';
 `
 
-export const Label = styled.label`
+export const Input = styled.input`
   padding: ${pxToRem(12)};
   display: flex;
   justify-content: space-between;
@@ -52,53 +52,60 @@ export const Label = styled.label`
   font-size: ${pxToRem(14)};
   line-height: 1.3;
   background: ${(props) => props.theme['base-input']};
-  color: ${(props) => props.theme['base-label']};
+  color: ${(props) => props.theme['base-text']};
   border: 1px solid ${(props) => props.theme['base-button']};
   border-radius: 4px;
 
-  &:not(:last-child) {
-    margin-bottom: ${pxToRem(16)};
+  &::placeholder {
+    color: ${(props) => props.theme['base-label']};
   }
 
+  &:focus {
+    border: 1px solid ${(props) => props.theme['yellow-dark']};
+  }
+
+  &:not(:first-child) {
+    margin-top: ${pxToRem(16)};
+  }
   span {
     font-size: ${pxToRem(12)};
     font-style: italic;
   }
 
-  &[for='cep'] {
+  &[name='cep'] {
     width: ${pxToRem(200)};
     grid-area: cep;
   }
 
-  &[for='rua'] {
+  &[name='rua'] {
     width: 100%;
     grid-area: rua;
   }
 
-  &[for='numero'] {
+  &[name='numero'] {
     width: ${pxToRem(200)};
     margin-right: ${pxToRem(12)};
     grid-area: numero;
   }
 
-  &[for='complemento'] {
+  &[name='complemento'] {
     width: 100%;
     grid-area: complemento;
   }
 
-  &[for='bairro'] {
+  &[name='bairro'] {
     width: ${pxToRem(200)};
     margin-right: ${pxToRem(12)};
     grid-area: bairro;
   }
 
-  &[for='cidade'] {
+  &[name='cidade'] {
     width: ${pxToRem(276)};
     margin-right: ${pxToRem(12)};
     grid-area: cidade;
   }
 
-  &[for='uf'] {
+  &[name='uf'] {
     width: ${pxToRem(60)};
     grid-area: uf;
   }

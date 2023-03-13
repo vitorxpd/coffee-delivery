@@ -1,8 +1,11 @@
 import { MapPinLine } from 'phosphor-react'
+import { useFormContext } from 'react-hook-form'
 
 import * as S from './styles'
 
 export function FormInputs() {
+  const { register } = useFormContext()
+
   return (
     <S.FormInputsContainer>
       <S.FormDescriptionContainer>
@@ -15,28 +18,27 @@ export function FormInputs() {
         </S.FormDescriptionTextContainer>
       </S.FormDescriptionContainer>
       <S.InputsWrapper>
-        <S.Label htmlFor="cep">CEP</S.Label>
-        <input type="text" id="cep" hidden />
+        <S.Input type="text" placeholder="CEP" {...register('cep')} />
 
-        <S.Label htmlFor="rua">Rua</S.Label>
-        <input type="text" id="rua" hidden />
+        <S.Input type="text" placeholder="Rua" {...register('rua')} />
 
-        <S.Label htmlFor="numero">Número</S.Label>
-        <input type="text" id="numero" hidden />
+        <S.Input
+          type="number"
+          placeholder="Número"
+          {...register('numero', { valueAsNumber: true })}
+        />
 
-        <S.Label htmlFor="complemento">
-          Complemento <span>Opcional</span>
-        </S.Label>
-        <input type="text" id="complemento" hidden />
+        <S.Input
+          type="text"
+          placeholder="Complemento"
+          {...register('complemento')}
+        />
 
-        <S.Label htmlFor="bairro">Bairro</S.Label>
-        <input type="text" id="bairro" hidden />
+        <S.Input type="text" placeholder="Bairro" {...register('bairro')} />
 
-        <S.Label htmlFor="cidade">Cidade</S.Label>
-        <input type="text" id="cidade" hidden />
+        <S.Input type="text" placeholder="Cidade" {...register('cidade')} />
 
-        <S.Label htmlFor="city">UF</S.Label>
-        <input type="text" id="uf" hidden />
+        <S.Input type="text" placeholder="UF" {...register('uf')} />
       </S.InputsWrapper>
     </S.FormInputsContainer>
   )

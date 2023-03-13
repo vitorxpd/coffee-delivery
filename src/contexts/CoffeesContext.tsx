@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useReducer } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { coffees, CoffeeProps } from '../data/coffees'
 
 interface CartItemProps {
@@ -20,12 +26,26 @@ interface CoffeesStateProps {
   totalizers: Totalizers
 }
 
+interface UserData {
+  cep: string
+  rua: string
+  numero: number
+  complemento?: string | undefined
+  bairro: string
+  cidade: string
+  uf: string
+  payment_method: string
+}
+
 interface CoffeesContextProps {
+  userData: UserData
   coffeesState: CoffeesStateProps
+  updateUserData: (data: UserData) => void
   addCoffeeToCart: (id: number, price: number, amount: number) => void
   decrementAmount: (id: number) => void
   incrementAmount: (id: number) => void
   removeCoffee: (id: number) => void
+  clearCartItems: () => void
 }
 
 interface CoffeesContextProviderProps {
@@ -37,6 +57,7 @@ export const CoffeesContext = createContext({} as CoffeesContextProps)
 export function CoffeesContextProvider({
   children,
 }: CoffeesContextProviderProps) {
+  const [userData, setUserData] = useState<UserData>(Object)
   const [coffeesState, dispatch] = useReducer(
     (state: CoffeesStateProps, action: any) => {
       const incrementCartQuantity = state.cartItems.length + 1
@@ -93,6 +114,14 @@ export function CoffeesContextProvider({
         }
       }
 
+      if (action.type === 'CLEAR_CART_ITEMS') {
+        return {
+          ...state,
+          cartItems: [],
+          cartQuantity: 0,
+        }
+      }
+
       if (action.type === 'UPDATE_TOTALIZERS') {
         const totalizer = state.cartItems.reduce((acc, item) => {
           return acc + item.price * item.amount
@@ -121,6 +150,10 @@ export function CoffeesContextProvider({
       },
     },
   )
+
+  function updateUserData(data: UserData) {
+    setUserData(data)
+  }
 
   function addCoffeeToCart(id: number, price: number, amount: number) {
     dispatch({
@@ -160,6 +193,12 @@ export function CoffeesContextProvider({
     })
   }
 
+  function clearCartItems() {
+    dispatch({
+      type: 'CLEAR_CART_ITEMS',
+    })
+  }
+
   function updateTotalizers() {
     dispatch({
       type: 'UPDATE_TOTALIZERS',
@@ -173,11 +212,14 @@ export function CoffeesContextProvider({
   return (
     <CoffeesContext.Provider
       value={{
+        userData,
         coffeesState,
+        updateUserData,
         addCoffeeToCart,
         decrementAmount,
         incrementAmount,
         removeCoffee,
+        clearCartItems,
       }}
     >
       {children}

@@ -1,4 +1,5 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
+import { useFormContext } from 'react-hook-form'
 
 import * as S from './styles'
 
@@ -10,6 +11,8 @@ export function PaymentMethods() {
 
     event.target.classList.add('checked')
   }
+
+  const { register } = useFormContext()
 
   return (
     <S.PaymentMethodsContainer>
@@ -26,9 +29,10 @@ export function PaymentMethods() {
         <input
           type="radio"
           id="credito"
-          name="payment_method"
+          value="credito"
           onClick={handleSelectMethod}
           hidden
+          {...register('payment_method')}
         />
         <S.RadioLabel htmlFor="credito">
           <CreditCard size={16} />
@@ -38,9 +42,10 @@ export function PaymentMethods() {
         <input
           type="radio"
           id="debito"
-          name="payment_method"
+          value="debito"
           onClick={handleSelectMethod}
           hidden
+          {...register('payment_method')}
         />
         <S.RadioLabel htmlFor="debito">
           <Bank size={16} />
@@ -50,9 +55,10 @@ export function PaymentMethods() {
         <input
           type="radio"
           id="dinheiro"
-          name="payment_method"
+          value="dinheiro"
           onClick={handleSelectMethod}
           hidden
+          {...register('payment_method')}
         />
         <S.RadioLabel htmlFor="dinheiro">
           <Money size={16} />
