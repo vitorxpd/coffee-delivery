@@ -13,7 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         -webkit-font-smoothing: antialiased;
-        background: ${(props) => props.theme.background}
+        background: ${(props) => props.theme.background};
+        overflow-y: scroll;
     }
 
     input {
