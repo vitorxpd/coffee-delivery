@@ -31,11 +31,4 @@ export const CounterInput = styled.input`
   border: 0;
   color: ${(props) => props.theme['base-title']};
   text-align: center;
-  -moz-appearance: textfield;
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 `
