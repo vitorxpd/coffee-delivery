@@ -16,6 +16,16 @@ export const GlobalStyle = createGlobalStyle`
         background: ${(props) => props.theme.background}
     }
 
+    input {
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+    }
+
     body, input, textarea, button {
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
