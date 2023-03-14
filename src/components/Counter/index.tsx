@@ -22,11 +22,11 @@ export function Counter({
   }
   return (
     <S.Counter>
-      <S.CounterButton onClick={handleDecrementAmount}>
+      <S.CounterButton type="button" onClick={handleDecrementAmount}>
         <Minus size={14} />
       </S.CounterButton>
       <S.CounterInput type="number" value={amount} disabled />
-      <S.CounterButton onClick={handleIncrementAmount}>
+      <S.CounterButton type="button" onClick={handleIncrementAmount}>
         <Plus size={14} />
       </S.CounterButton>
     </S.Counter>
