@@ -7,7 +7,7 @@ import * as S from './styles'
 export function CartTotalizer() {
   const { coffeesState } = useContext(CoffeesContext)
 
-  const { totalizers } = coffeesState
+  const { cartItems, totalizers } = coffeesState
 
   return (
     <S.CartTotalizerContainer>
@@ -19,11 +19,19 @@ export function CartTotalizer() {
       </S.Container>
       <S.Container>
         <S.ShippingText>Entrega</S.ShippingText>
-        <S.ShippingPrice>{priceFormatter(totalizers.shipping)}</S.ShippingPrice>
+        <S.ShippingPrice>
+          {cartItems.length
+            ? priceFormatter(totalizers.shipping)
+            : priceFormatter(0)}
+        </S.ShippingPrice>
       </S.Container>
       <S.Container>
         <S.Highlight>Total</S.Highlight>
-        <S.Highlight>{priceFormatter(totalizers.total)}</S.Highlight>
+        <S.Highlight>
+          {cartItems.length
+            ? priceFormatter(totalizers.total)
+            : priceFormatter(0)}
+        </S.Highlight>
       </S.Container>
     </S.CartTotalizerContainer>
   )
