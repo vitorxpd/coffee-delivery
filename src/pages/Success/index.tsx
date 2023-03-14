@@ -1,9 +1,13 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
 
 import * as S from './styles'
 import success from '../../assets/success.svg'
 
 export function Success() {
+  const { userData } = useContext(CoffeesContext)
+
   return (
     <S.SuccessWrapper>
       <S.MainTitle>Uhu! Pedido confirmado</S.MainTitle>
@@ -18,9 +22,14 @@ export function Success() {
             </S.IconContainer>
             <S.TextContent>
               <span>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{' '}
+                <strong>
+                  {userData.rua}, {userData.numero}
+                </strong>
               </span>
-              <span>Farrapos - Porto Alegre, RS</span>
+              <span>
+                {userData.bairro} - {userData.cidade}, {userData.uf}
+              </span>
             </S.TextContent>
           </S.InfoBox>
           <S.InfoBox>
@@ -38,7 +47,11 @@ export function Success() {
             </S.IconContainer>
             <S.TextContent>
               <span>Pagamento na entrega</span>
-              <strong>Cartão de crédito</strong>
+              <strong>
+                {userData.payment_method === 'credito' && 'Cartão de Crédito'}
+                {userData.payment_method === 'debito' && 'Cartão de Débito'}
+                {userData.payment_method === 'dinheiro' && 'Dinheiro'}
+              </strong>
             </S.TextContent>
           </S.InfoBox>
         </S.BoxWithBorder>
