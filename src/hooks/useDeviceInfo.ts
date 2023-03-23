@@ -4,14 +4,12 @@ type DeviceInfoType = 'mobile' | 'laptop' | 'desktop' | undefined
 
 interface DeviceInfo {
   type: DeviceInfoType
-  screenSize: number
   isMobile: boolean
 }
 
-export default function useDeviceInfo() {
+export function useDeviceInfo() {
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>({
     type: undefined,
-    screenSize: window.innerWidth,
     isMobile: false,
   })
 
@@ -21,18 +19,9 @@ export default function useDeviceInfo() {
     desktop: 1920,
   }
 
-  const { screenSize } = deviceInfo
+  const screenSize = window.innerWidth
 
   const { desktop, laptop, mobile } = sizes
-
-  function setScreenSize() {
-    setDeviceInfo((state) => {
-      return {
-        ...state,
-        screenSize: window.innerWidth,
-      }
-    })
-  }
 
   function setType(device: DeviceInfoType) {
     setDeviceInfo((state) => {
@@ -51,10 +40,6 @@ export default function useDeviceInfo() {
       }
     })
   }
-
-  useEffect(() => {
-    setScreenSize()
-  }, [])
 
   useEffect(() => {
     if (screenSize <= mobile) {
