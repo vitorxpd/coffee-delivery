@@ -7,8 +7,19 @@ interface Position {
   }
 }
 
+interface AddressComponent {
+  long_name: string
+  short_name: string
+  types: string[]
+}
+
+interface Address {
+  address_components: AddressComponent[]
+  formatted_address: string
+}
+
 export function useMapsReverseGeocoding() {
-  const [address, setAddress] = useState<Object>({})
+  const [address, setAddress] = useState<Address>(Object)
 
   async function getAddress({ coords }: Position) {
     const { latitude, longitude } = coords
@@ -20,7 +31,11 @@ export function useMapsReverseGeocoding() {
     )
 
     const data = await response.json()
-    setAddress(data)
+
+    setAddress({
+      address_components: data.results[0].address_components,
+      formatted_address: data.results[0].formatted_address,
+    })
   }
 
   useEffect(() => {
