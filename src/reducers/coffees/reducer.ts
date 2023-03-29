@@ -95,7 +95,6 @@ export function coffeesReducer(state: CoffeesStateProps, action: any) {
       }
     }
     default: {
-      console.log('teste')
       return state
     }
   }
