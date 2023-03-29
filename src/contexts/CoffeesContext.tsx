@@ -5,26 +5,16 @@ import {
   useReducer,
   useState,
 } from 'react'
-import { coffees, CoffeeProps } from '../data/coffees'
-
-interface CartItemProps {
-  id: number
-  price: number
-  amount: number
-}
-
-interface Totalizers {
-  totalItems: number
-  shipping: number
-  total: number
-}
-
-interface CoffeesStateProps {
-  coffees: CoffeeProps[]
-  cartItems: CartItemProps[]
-  cartQuantity: number
-  totalizers: Totalizers
-}
+import { coffees } from '../data/coffees'
+import {
+  addCoffeeToCartAction,
+  clearCartItemsAction,
+  decrementAmountAction,
+  incrementAmountAction,
+  removeCoffeeAction,
+  updateTotalizersAction,
+} from '../reducers/coffees/actions'
+import { coffeesReducer, CoffeesStateProps } from '../reducers/coffees/reducer'
 
 interface UserData {
   cep: string
@@ -58,151 +48,43 @@ export function CoffeesContextProvider({
   children,
 }: CoffeesContextProviderProps) {
   const [userData, setUserData] = useState<UserData>(Object)
-  const [coffeesState, dispatch] = useReducer(
-    (state: CoffeesStateProps, action: any) => {
-      const incrementCartQuantity = state.cartItems.length + 1
-      const decrementCartQuantity = state.cartItems.length - 1
-
-      if (action.type === 'ADD_COFFEE') {
-        const { id, price, amount } = action.payload
-
-        return {
-          ...state,
-          cartItems: [...state.cartItems, { id, price, amount }],
-          cartQuantity: incrementCartQuantity,
-        }
-      }
-
-      if (action.type === 'DECREMENT_AMOUNT') {
-        const { id } = action.payload
-
-        return {
-          ...state,
-          cartItems: state.cartItems.map((item) => {
-            if (item.id === id) {
-              return { ...item, amount: item.amount - 1 }
-            } else {
-              return item
-            }
-          }),
-        }
-      }
-
-      if (action.type === 'INCREMENT_AMOUNT') {
-        const { id } = action.payload
-
-        return {
-          ...state,
-          cartItems: state.cartItems.map((item) => {
-            if (item.id === id) {
-              return { ...item, amount: item.amount + 1 }
-            } else {
-              return item
-            }
-          }),
-        }
-      }
-
-      if (action.type === 'REMOVE_COFFEE') {
-        const { id } = action.payload
-        const filteredCoffees = state.cartItems.filter((item) => item.id !== id)
-
-        return {
-          ...state,
-          cartItems: filteredCoffees,
-          cartQuantity: decrementCartQuantity,
-        }
-      }
-
-      if (action.type === 'CLEAR_CART_ITEMS') {
-        return {
-          ...state,
-          cartItems: [],
-          cartQuantity: 0,
-        }
-      }
-
-      if (action.type === 'UPDATE_TOTALIZERS') {
-        const totalizer = state.cartItems.reduce((acc, item) => {
-          return acc + item.price * item.amount
-        }, 0)
-
-        return {
-          ...state,
-          totalizers: {
-            totalItems: totalizer,
-            shipping: 3.5,
-            total: totalizer + state.totalizers.shipping,
-          },
-        }
-      }
-
-      return state
+  const [coffeesState, dispatch] = useReducer(coffeesReducer, {
+    coffees,
+    cartItems: [],
+    cartQuantity: 0,
+    totalizers: {
+      totalItems: 0,
+      shipping: 3.5,
+      total: 0,
     },
-    {
-      coffees,
-      cartItems: [],
-      cartQuantity: 0,
-      totalizers: {
-        totalItems: 0,
-        shipping: 3.5,
-        total: 0,
-      },
-    },
-  )
+  })
 
   function updateUserData(data: UserData) {
     setUserData(data)
   }
 
   function addCoffeeToCart(id: number, price: number, amount: number) {
-    dispatch({
-      type: 'ADD_COFFEE',
-      payload: {
-        id,
-        price,
-        amount,
-      },
-    })
+    dispatch(addCoffeeToCartAction(id, price, amount))
   }
 
   function decrementAmount(id: number) {
-    dispatch({
-      type: 'DECREMENT_AMOUNT',
-      payload: {
-        id,
-      },
-    })
+    dispatch(decrementAmountAction(id))
   }
 
   function incrementAmount(id: number) {
-    dispatch({
-      type: 'INCREMENT_AMOUNT',
-      payload: {
-        id,
-      },
-    })
+    dispatch(incrementAmountAction(id))
   }
 
   function removeCoffee(id: number) {
-    dispatch({
-      type: 'REMOVE_COFFEE',
-      payload: {
-        id,
-      },
-    })
+    dispatch(removeCoffeeAction(id))
   }
 
   function clearCartItems() {
-    dispatch({
-      type: 'CLEAR_CART_ITEMS',
-    })
+    dispatch(clearCartItemsAction())
   }
 
   function updateTotalizers() {
-    dispatch({
-      type: 'UPDATE_TOTALIZERS',
-    })
+    dispatch(updateTotalizersAction())
   }
 
   useEffect(() => {
