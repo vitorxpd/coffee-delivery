@@ -1,4 +1,4 @@
-import { Coffee } from '../data/coffees'
+import { CoffeesState } from '../contexts/CoffeesContext'
 
 export enum ActionTypes {
   ADD_COFFEE = 'ADD_COFFEE',
@@ -8,37 +8,6 @@ export enum ActionTypes {
   CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
   UPDATE_TOTALIZERS = 'UPDATE_TOTALIZERS',
   UPDATE_USER_DATA = 'UPDATE_USER_DATA',
-}
-
-interface CartItem {
-  id: number
-  price: number
-  quantity: number
-}
-
-interface Totalizers {
-  totalItems: number
-  shipping: number
-  total: number
-}
-
-interface UserData {
-  cep: string
-  rua: string
-  numero: number
-  complemento?: string | undefined
-  bairro: string
-  cidade: string
-  uf: string
-  payment_method: string
-}
-
-export interface CoffeesState {
-  coffees: Coffee[]
-  cartItems: CartItem[]
-  cartQuantity: number
-  totalizers: Totalizers
-  userData: UserData
 }
 
 export function coffeesReducer(state: CoffeesState, action: any) {

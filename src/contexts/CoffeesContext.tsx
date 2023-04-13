@@ -5,12 +5,39 @@ import {
   useEffect,
   useReducer,
 } from 'react'
-import { coffees } from '../data/coffees'
-import {
-  ActionTypes,
-  coffeesReducer,
-  CoffeesState,
-} from '../reducers/coffeesReducer'
+import { coffees, Coffee } from '../data/coffees'
+import { ActionTypes, coffeesReducer } from '../reducers/coffeesReducer'
+
+interface CartItem {
+  id: number
+  price: number
+  quantity: number
+}
+
+interface Totalizers {
+  totalItems: number
+  shipping: number
+  total: number
+}
+
+interface UserData {
+  cep: string
+  rua: string
+  numero: number
+  complemento?: string | undefined
+  bairro: string
+  cidade: string
+  uf: string
+  payment_method: string
+}
+
+export interface CoffeesState {
+  coffees: Coffee[]
+  cartItems: CartItem[]
+  cartQuantity: number
+  totalizers: Totalizers
+  userData: UserData
+}
 
 interface CoffeesContextProps {
   coffeesState: CoffeesState
