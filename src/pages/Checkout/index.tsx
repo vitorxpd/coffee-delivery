@@ -1,16 +1,16 @@
 import { useContext } from 'react'
-import { useForm, FormProvider } from 'react-hook-form'
 import { CoffeesContext } from '../../contexts/CoffeesContext'
-import { CartItem } from './components/CartItem'
-import { CartTotalizer } from './components/CartTotalizer'
+import * as zod from 'zod'
+import { useForm, FormProvider } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
+import { ActionTypes } from '../../reducers/coffeesReducer'
 import { FormInputs } from './components/FormInputs'
 import { PaymentMethods } from './components/PaymentMethods'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as zod from 'zod'
-import { useNavigate } from 'react-router-dom'
+import { CartList } from './components/CartList'
+import { CartTotalizer } from './components/CartTotalizer'
 
 import * as S from './styles'
-import { ActionTypes } from '../../reducers/coffeesReducer'
 
 const checkoutValidationSchema = zod.object({
   cep: zod.string().min(8).max(8),
@@ -58,7 +58,7 @@ export function Checkout() {
   /* console.log(formState.errors) */
 
   return (
-    <S.CheckoutContainer>
+    <S.CheckoutWrapper>
       <form onSubmit={handleSubmit(handleSubmitCheckout)}>
         <S.RegisterContainer>
           <S.FormTitle>Complete seu pedido</S.FormTitle>
@@ -70,16 +70,12 @@ export function Checkout() {
         <S.CheckoutItemsContainer>
           <S.FormTitle>Cafés selecionados</S.FormTitle>
           <S.CartItemsContainer>
-            <S.CartItemsList>
-              {cartItems.map((item) => {
-                return <CartItem id={item.id} key={item.id} />
-              })}
-            </S.CartItemsList>
+            <CartList />
             <CartTotalizer />
             <S.SubmitButton type="submit">Confirmar pedido</S.SubmitButton>
           </S.CartItemsContainer>
         </S.CheckoutItemsContainer>
       </form>
-    </S.CheckoutContainer>
+    </S.CheckoutWrapper>
   )
 }

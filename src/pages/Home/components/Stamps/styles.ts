@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const StampsContainer = styled.div`
+export const StampsWrapper = styled.div`
   margin-top: ${pxToRem(66)};
   display: flex;
   flex-wrap: wrap;

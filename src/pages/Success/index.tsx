@@ -1,6 +1,6 @@
-import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import { useContext } from 'react'
 import { CoffeesContext } from '../../contexts/CoffeesContext'
+import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 
 import * as S from './styles'
 import success from '../../assets/success.svg'

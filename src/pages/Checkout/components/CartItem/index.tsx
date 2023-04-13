@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+import { ActionTypes } from '../../../../reducers/coffeesReducer'
 import { Counter } from '../../../../components/Counter'
 import { Trash } from 'phosphor-react'
+
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
-import { ActionTypes } from '../../../../reducers/coffeesReducer'
 
 interface CartItemProps {
   id: number
@@ -56,9 +57,9 @@ export function CartItem({ id }: CartItemProps) {
   }
 
   return (
-    <S.CartItem>
+    <S.CartItemWrapper>
       <img src={coffee.imageUrl} alt="" />
-      <S.MainCoffeeContainer>
+      <S.ItemContainer>
         <S.CoffeeName>{coffee.name}</S.CoffeeName>
         <S.ActionsContainer>
           <Counter
@@ -71,8 +72,8 @@ export function CartItem({ id }: CartItemProps) {
             <S.RemoveButtonText>Remover</S.RemoveButtonText>
           </S.RemoveButton>
         </S.ActionsContainer>
-      </S.MainCoffeeContainer>
+      </S.ItemContainer>
       <S.CoffeePrice>{formattedPrice}</S.CoffeePrice>
-    </S.CartItem>
+    </S.CartItemWrapper>
   )
 }

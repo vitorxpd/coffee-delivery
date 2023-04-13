@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const PaymentMethodsContainer = styled.div`
+export const PaymentMethodsWrapper = styled.div`
   margin-top: ${pxToRem(12)};
   padding: ${pxToRem(40)};
   background: ${(props) => props.theme['base-card']};
@@ -28,13 +28,13 @@ export const DescriptionTitle = styled.span`
   color: ${(props) => props.theme['base-subtitle']};
 `
 
-export const DescriptionSubtitle = styled.span`
+export const DescriptionText = styled.span`
   font-size: ${pxToRem(14)};
   line-height: 1.3;
   color: ${(props) => props.theme['base-text']};
 `
 
-export const MethodsContainer = styled.div`
+export const PaymentMethodsContainer = styled.div`
   margin-top: ${pxToRem(32)};
   display: flex;
   gap: ${pxToRem(12)};

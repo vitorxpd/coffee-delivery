@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const CartItem = styled.li`
+export const CartItemWrapper = styled.li`
   padding: ${pxToRem(8)} ${pxToRem(4)} ${pxToRem(24)} ${pxToRem(4)};
   display: flex;
   gap: ${pxToRem(20)};
@@ -13,7 +13,7 @@ export const CartItem = styled.li`
   }
 `
 
-export const MainCoffeeContainer = styled.div`
+export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${pxToRem(8)};

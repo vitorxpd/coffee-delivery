@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
-import { ShoppingCart } from 'phosphor-react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 import { Counter } from '../../../../components/Counter'
+import { ActionTypes } from '../../../../reducers/coffeesReducer'
+import { ShoppingCart } from 'phosphor-react'
+
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
-import { ActionTypes } from '../../../../reducers/coffeesReducer'
 
 interface CoffeeCardProps {
   id: number
@@ -48,7 +49,7 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
   }
 
   return (
-    <S.CardContainer>
+    <S.CardWrapper>
       <img src={coffee.imageUrl} alt="" />
       <S.TagsContainer>
         {coffee.tags.map((tag) => {
@@ -56,13 +57,13 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
         })}
       </S.TagsContainer>
       <S.Title>{coffee.name}</S.Title>
-      <S.Subtitle>{coffee.description}</S.Subtitle>
+      <S.Description>{coffee.description}</S.Description>
       <S.BottomContainer>
         <S.PriceContainer>
-          <S.PrefixPrice>
+          <S.PricePrefix>
             {formattedPrice[0]}
             {formattedPrice[1]}
-          </S.PrefixPrice>
+          </S.PricePrefix>
           <S.Price>{formattedPrice.replace('R$', '')}</S.Price>
         </S.PriceContainer>
         <S.ActionsContainer>
@@ -76,6 +77,6 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
           </S.CartButton>
         </S.ActionsContainer>
       </S.BottomContainer>
-    </S.CardContainer>
+    </S.CardWrapper>
   )
 }

@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
@@ -10,29 +11,27 @@ export function CartTotalizer() {
   const { cartItems, totalizers } = coffeesState
 
   return (
-    <S.CartTotalizerContainer>
+    <S.CartTotalizerWrapper>
       <S.Container>
-        <S.TotalItemsText>Total de itens</S.TotalItemsText>
-        <S.TotalItemsPrice>
-          {priceFormatter(totalizers.totalItems)}
-        </S.TotalItemsPrice>
+        <S.TextContent>Total de itens</S.TextContent>
+        <S.PriceContent>{priceFormatter(totalizers.totalItems)}</S.PriceContent>
       </S.Container>
       <S.Container>
-        <S.ShippingText>Entrega</S.ShippingText>
-        <S.ShippingPrice>
+        <S.TextContent>Entrega</S.TextContent>
+        <S.PriceContent>
           {cartItems.length
             ? priceFormatter(totalizers.shipping)
             : priceFormatter(0)}
-        </S.ShippingPrice>
+        </S.PriceContent>
       </S.Container>
       <S.Container>
-        <S.Highlight>Total</S.Highlight>
-        <S.Highlight>
+        <S.HighlightContent>Total</S.HighlightContent>
+        <S.HighlightContent>
           {cartItems.length
             ? priceFormatter(totalizers.total)
             : priceFormatter(0)}
-        </S.Highlight>
+        </S.HighlightContent>
       </S.Container>
-    </S.CartTotalizerContainer>
+    </S.CartTotalizerWrapper>
   )
 }

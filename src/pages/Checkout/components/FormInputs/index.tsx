@@ -7,17 +7,17 @@ export function FormInputs() {
   const { register } = useFormContext()
 
   return (
-    <S.FormInputsContainer>
-      <S.FormDescriptionContainer>
+    <S.FormInputsWrapper>
+      <S.DescriptionContainer>
         <MapPinLine size={22} />
-        <S.FormDescriptionTextContainer>
+        <S.DescriptionTextContainer>
           <S.DescriptionTitle>Endereço de Entrega</S.DescriptionTitle>
-          <S.DescriptionSubtitle>
+          <S.DescriptionText>
             Informe o endereço onde deseja receber seu pedido
-          </S.DescriptionSubtitle>
-        </S.FormDescriptionTextContainer>
-      </S.FormDescriptionContainer>
-      <S.InputsWrapper>
+          </S.DescriptionText>
+        </S.DescriptionTextContainer>
+      </S.DescriptionContainer>
+      <S.InputsContainer>
         <S.Input type="text" placeholder="CEP" {...register('cep')} />
 
         <S.Input type="text" placeholder="Rua" {...register('rua')} />
@@ -39,7 +39,7 @@ export function FormInputs() {
         <S.Input type="text" placeholder="Cidade" {...register('cidade')} />
 
         <S.Input type="text" placeholder="UF" {...register('uf')} />
-      </S.InputsWrapper>
-    </S.FormInputsContainer>
+      </S.InputsContainer>
+    </S.FormInputsWrapper>
   )
 }

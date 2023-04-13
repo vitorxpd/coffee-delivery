@@ -4,7 +4,7 @@ import * as S from './styles'
 
 export function Stamps() {
   return (
-    <S.StampsContainer>
+    <S.StampsWrapper>
       <S.StampItem variant="yellow-dark" customSize={true}>
         <div>
           <ShoppingCart size={16} />
@@ -29,6 +29,6 @@ export function Stamps() {
         </div>
         <span>O café chega fresquinho até você</span>
       </S.StampItem>
-    </S.StampsContainer>
+    </S.StampsWrapper>
   )
 }

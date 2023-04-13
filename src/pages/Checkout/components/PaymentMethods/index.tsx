@@ -1,5 +1,5 @@
-import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 import { useFormContext } from 'react-hook-form'
+import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 
 import * as S from './styles'
 
@@ -15,17 +15,17 @@ export function PaymentMethods() {
   const { register } = useFormContext()
 
   return (
-    <S.PaymentMethodsContainer>
+    <S.PaymentMethodsWrapper>
       <S.PaymentDescriptionContainer>
         <CurrencyDollar size={22} />
         <S.PaymentDescriptionTextContainer>
           <S.DescriptionTitle>Endereço de Entrega</S.DescriptionTitle>
-          <S.DescriptionSubtitle>
+          <S.DescriptionText>
             Informe o endereço onde deseja receber seu pedido
-          </S.DescriptionSubtitle>
+          </S.DescriptionText>
         </S.PaymentDescriptionTextContainer>
       </S.PaymentDescriptionContainer>
-      <S.MethodsContainer>
+      <S.PaymentMethodsContainer>
         <input
           type="radio"
           id="credito"
@@ -64,7 +64,7 @@ export function PaymentMethods() {
           <Money size={16} />
           <S.TextLabel>Dinheiro</S.TextLabel>
         </S.RadioLabel>
-      </S.MethodsContainer>
-    </S.PaymentMethodsContainer>
+      </S.PaymentMethodsContainer>
+    </S.PaymentMethodsWrapper>
   )
 }

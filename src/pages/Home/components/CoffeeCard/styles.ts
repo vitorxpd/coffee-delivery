@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const CardContainer = styled.li`
+export const CardWrapper = styled.li`
   width: ${pxToRem(256)};
   height: ${pxToRem(310)};
   padding: 0 ${pxToRem(20)};
@@ -44,7 +44,7 @@ export const Title = styled.h3`
   color: ${(props) => props.theme['base-subtitle']};
 `
 
-export const Subtitle = styled.p`
+export const Description = styled.p`
   margin-top: ${pxToRem(8)};
   font-size: 14px;
   line-height: 1.3;
@@ -64,7 +64,7 @@ export const PriceContainer = styled.div`
   align-items: baseline;
 `
 
-export const PrefixPrice = styled.span`
+export const PricePrefix = styled.span`
   font-size: ${pxToRem(14)};
   line-height: 18.2px;
 

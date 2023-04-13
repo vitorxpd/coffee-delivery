@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const CartTotalizerContainer = styled.div`
+export const CartTotalizerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${pxToRem(12)};
@@ -12,26 +12,20 @@ export const Container = styled.div`
   justify-content: space-between;
 `
 
-const BaseText = styled.span`
+const BaseContent = styled.span`
   line-height: 1.3;
   color: ${(props) => props.theme['base-text']};
 `
 
-export const TotalItemsText = styled(BaseText)`
+export const TextContent = styled(BaseContent)`
   font-size: ${pxToRem(14)};
 `
 
-export const TotalItemsPrice = styled(BaseText)``
+export const PriceContent = styled(BaseContent)``
 
-export const ShippingText = styled(BaseText)`
-  font-size: ${pxToRem(14)};
-`
-
-export const ShippingPrice = styled(BaseText)``
-
-export const Highlight = styled.span`
+export const HighlightContent = styled.span`
   font-size: ${pxToRem(20)};
   font-weight: 700;
-  color: ${(props) => props.theme['base-subtitle']};
   line-height: 1.3;
+  color: ${(props) => props.theme['base-subtitle']};
 `

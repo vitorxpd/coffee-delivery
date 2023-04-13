@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../utils/pxToRem'
 
-export const CheckoutContainer = styled.main`
+export const CheckoutWrapper = styled.main`
   padding-top: ${pxToRem(40)};
 
   form {
@@ -33,13 +33,6 @@ export const CartItemsContainer = styled.div`
   gap: ${pxToRem(24)};
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px;
-`
-
-export const CartItemsList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: ${pxToRem(24)};
-  list-style: none;
 `
 
 export const SubmitButton = styled.button`

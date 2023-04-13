@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const FormInputsContainer = styled.div`
+export const FormInputsWrapper = styled.div`
   margin-top: ${pxToRem(15)};
   padding: ${pxToRem(40)};
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px;
 `
 
-export const FormDescriptionContainer = styled.div`
+export const DescriptionContainer = styled.div`
   display: flex;
   gap: ${pxToRem(8)};
 
@@ -17,7 +17,7 @@ export const FormDescriptionContainer = styled.div`
   }
 `
 
-export const FormDescriptionTextContainer = styled.div`
+export const DescriptionTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${pxToRem(2)};
@@ -28,13 +28,13 @@ export const DescriptionTitle = styled.span`
   color: ${(props) => props.theme['base-subtitle']};
 `
 
-export const DescriptionSubtitle = styled.span`
+export const DescriptionText = styled.span`
   font-size: ${pxToRem(14)};
   line-height: 1.3;
   color: ${(props) => props.theme['base-text']};
 `
 
-export const InputsWrapper = styled.div`
+export const InputsContainer = styled.div`
   margin-top: ${pxToRem(32)};
   display: grid;
   grid-template-areas:
