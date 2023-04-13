@@ -2,8 +2,8 @@ import { Coffee } from '../data/coffees'
 
 export enum ActionTypes {
   ADD_COFFEE = 'ADD_COFFEE',
-  DECREMENT_AMOUNT = 'DECREMENT_AMOUNT',
-  INCREMENT_AMOUNT = 'INCREMENT_AMOUNT',
+  DECREMENT_QUANTITY = 'DECREMENT_QUANTITY',
+  INCREMENT_QUANTITY = 'INCREMENT_QUANTITY',
   REMOVE_COFFEE = 'REMOVE_COFFEE',
   CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
   UPDATE_TOTALIZERS = 'UPDATE_TOTALIZERS',
@@ -13,7 +13,7 @@ export enum ActionTypes {
 interface CartItem {
   id: number
   price: number
-  amount: number
+  quantity: number
 }
 
 interface Totalizers {
@@ -42,41 +42,38 @@ export interface CoffeesState {
 }
 
 export function coffeesReducer(state: CoffeesState, action: any) {
-  const incrementCartQuantity = state.cartItems.length + 1
-  const decrementCartQuantity = state.cartItems.length - 1
-
   switch (action.type) {
     case ActionTypes.ADD_COFFEE: {
-      const { id, price, amount } = action.payload
+      const { id, price, quantity } = action.payload
 
       return {
         ...state,
-        cartItems: [...state.cartItems, { id, price, amount }],
-        cartQuantity: incrementCartQuantity,
+        cartItems: [...state.cartItems, { id, price, quantity }],
+        cartQuantity: state.cartItems.length + 1,
       }
     }
-    case ActionTypes.DECREMENT_AMOUNT: {
+    case ActionTypes.DECREMENT_QUANTITY: {
       const { id } = action.payload
 
       return {
         ...state,
         cartItems: state.cartItems.map((item) => {
           if (item.id === id) {
-            return { ...item, amount: item.amount - 1 }
+            return { ...item, quantity: item.quantity - 1 }
           } else {
             return item
           }
         }),
       }
     }
-    case ActionTypes.INCREMENT_AMOUNT: {
+    case ActionTypes.INCREMENT_QUANTITY: {
       const { id } = action.payload
 
       return {
         ...state,
         cartItems: state.cartItems.map((item) => {
           if (item.id === id) {
-            return { ...item, amount: item.amount + 1 }
+            return { ...item, quantity: item.quantity + 1 }
           } else {
             return item
           }
@@ -90,7 +87,7 @@ export function coffeesReducer(state: CoffeesState, action: any) {
       return {
         ...state,
         cartItems: filteredCoffees,
-        cartQuantity: decrementCartQuantity,
+        cartQuantity: state.cartItems.length - 1,
       }
     }
 
@@ -103,7 +100,7 @@ export function coffeesReducer(state: CoffeesState, action: any) {
     }
     case ActionTypes.UPDATE_TOTALIZERS: {
       const totalizer = state.cartItems.reduce((acc, item) => {
-        return acc + item.price * item.amount
+        return acc + item.price * item.quantity
       }, 0)
 
       return {

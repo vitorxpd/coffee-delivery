@@ -3,32 +3,33 @@ import { Minus, Plus } from 'phosphor-react'
 import * as S from './styles'
 
 interface CounterProps {
-  amount: number
-  onChangeDecrementAmount: () => void
-  onChangeIncrementAmount: () => void
+  quantity: number
+  onDecrementQuantity: () => void
+  onIncrementQuantity: () => void
 }
 
 export function Counter({
-  amount,
-  onChangeDecrementAmount,
-  onChangeIncrementAmount,
+  quantity,
+  onDecrementQuantity,
+  onIncrementQuantity,
 }: CounterProps) {
-  function handleDecrementAmount() {
-    onChangeDecrementAmount()
+  function handleDecrementQuantity() {
+    onDecrementQuantity()
   }
 
-  function handleIncrementAmount() {
-    onChangeIncrementAmount()
+  function handleIncrementQuantity() {
+    onIncrementQuantity()
   }
+
   return (
-    <S.Counter>
-      <S.CounterButton type="button" onClick={handleDecrementAmount}>
+    <S.CounterWrapper>
+      <S.CounterButton type="button" onClick={handleDecrementQuantity}>
         <Minus size={14} />
       </S.CounterButton>
-      <S.CounterInput type="number" value={amount} disabled />
-      <S.CounterButton type="button" onClick={handleIncrementAmount}>
+      <S.CounterInput type="number" value={quantity} disabled />
+      <S.CounterButton type="button" onClick={handleIncrementQuantity}>
         <Plus size={14} />
       </S.CounterButton>
-    </S.Counter>
+    </S.CounterWrapper>
   )
 }

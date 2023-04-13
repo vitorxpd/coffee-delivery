@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../utils/pxToRem'
 
-export const Counter = styled.div`
+export const CounterWrapper = styled.div`
   padding: ${pxToRem(8)};
   display: flex;
   align-items: center;

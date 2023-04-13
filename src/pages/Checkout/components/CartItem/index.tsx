@@ -24,22 +24,22 @@ export function CartItem({ id }: CartItemProps) {
 
   const cartItem = cartItems[currentCartIndex]
 
-  const formattedPriceAmount = priceFormatter(cartItem.price * cartItem.amount)
+  const formattedPrice = priceFormatter(cartItem.price * cartItem.quantity)
 
-  function changeDecrementAmount() {
-    if (cartItem.amount > 1)
+  function decrementQuantity() {
+    if (cartItem.quantity > 1)
       coffeesDispatch({
-        type: ActionTypes.DECREMENT_AMOUNT,
+        type: ActionTypes.DECREMENT_QUANTITY,
         payload: {
           id,
         },
       })
   }
 
-  function changeIncrementAmount() {
-    if (cartItem.amount < coffee.quantity)
+  function incrementQuantity() {
+    if (cartItem.quantity < coffee.quantity)
       coffeesDispatch({
-        type: ActionTypes.INCREMENT_AMOUNT,
+        type: ActionTypes.INCREMENT_QUANTITY,
         payload: {
           id,
         },
@@ -62,9 +62,9 @@ export function CartItem({ id }: CartItemProps) {
         <S.CoffeeName>{coffee.name}</S.CoffeeName>
         <S.ActionsContainer>
           <Counter
-            amount={cartItem.amount}
-            onChangeDecrementAmount={changeDecrementAmount}
-            onChangeIncrementAmount={changeIncrementAmount}
+            quantity={cartItem.quantity}
+            onDecrementQuantity={decrementQuantity}
+            onIncrementQuantity={incrementQuantity}
           />
           <S.RemoveButton onClick={handleRemoveCoffee}>
             <Trash size={16} />
@@ -72,7 +72,7 @@ export function CartItem({ id }: CartItemProps) {
           </S.RemoveButton>
         </S.ActionsContainer>
       </S.MainCoffeeContainer>
-      <S.CoffeePrice>{formattedPriceAmount}</S.CoffeePrice>
+      <S.CoffeePrice>{formattedPrice}</S.CoffeePrice>
     </S.CartItem>
   )
 }

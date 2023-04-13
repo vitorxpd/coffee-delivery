@@ -12,7 +12,7 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({ id }: CoffeeCardProps) {
-  const [amount, setAmount] = useState<number>(1)
+  const [quantity, setQuantity] = useState<number>(1)
 
   const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
 
@@ -26,12 +26,12 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
 
   const formattedPrice = priceFormatter(coffee.price)
 
-  function changeDecrementAmount() {
-    if (amount > 1) setAmount((state) => state - 1)
+  function decrementQuantity() {
+    if (quantity > 1) setQuantity((state) => state - 1)
   }
 
-  function changeIncrementAmount() {
-    if (amount < coffee.quantity) setAmount((state) => state + 1)
+  function incrementQuantity() {
+    if (quantity < coffee.quantity) setQuantity((state) => state + 1)
   }
 
   function handleAddCoffeeToCart() {
@@ -41,7 +41,7 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
           payload: {
             id: coffee.id,
             price: coffee.price,
-            amount,
+            quantity,
           },
         })
       : alert('O produto já foi adicionado!')
@@ -67,9 +67,9 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
         </S.PriceContainer>
         <S.ActionsContainer>
           <Counter
-            amount={amount}
-            onChangeDecrementAmount={changeDecrementAmount}
-            onChangeIncrementAmount={changeIncrementAmount}
+            quantity={quantity}
+            onDecrementQuantity={decrementQuantity}
+            onIncrementQuantity={incrementQuantity}
           />
           <S.CartButton onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={22} />
