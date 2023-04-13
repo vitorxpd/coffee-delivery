@@ -90,7 +90,6 @@ export const Input = styled.input`
 
   &[name='complemento'] {
     width: 100%;
-    grid-area: complemento;
   }
 
   &[name='bairro'] {
@@ -109,4 +108,28 @@ export const Input = styled.input`
     width: ${pxToRem(60)};
     grid-area: uf;
   }
+`
+
+export const Complement = styled.div`
+  margin-top: ${pxToRem(16)};
+  grid-area: complemento;
+  position: relative;
+`
+
+interface FloatTextProps {
+  visible: boolean
+}
+
+export const FloatText = styled.span<FloatTextProps>`
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+
+  font-size: ${pxToRem(12)};
+  font-style: italic;
+  line-height: 1.3;
+  color: ${(props) => props.theme['base-label']};
+
+  right: ${pxToRem(12)};
+  top: 50%;
+  transform: translate(0, -50%);
+  position: absolute;
 `

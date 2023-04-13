@@ -4,7 +4,9 @@ import { useFormContext } from 'react-hook-form'
 import * as S from './styles'
 
 export function FormInputs() {
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
+
+  const watchComplement = watch('complemento')
 
   return (
     <S.FormInputsWrapper>
@@ -28,11 +30,14 @@ export function FormInputs() {
           {...register('numero', { valueAsNumber: true })}
         />
 
-        <S.Input
-          type="text"
-          placeholder="Complemento"
-          {...register('complemento')}
-        />
+        <S.Complement>
+          <S.Input
+            type="text"
+            placeholder="Complemento"
+            {...register('complemento')}
+          />
+          <S.FloatText visible={!watchComplement}>Opcional</S.FloatText>
+        </S.Complement>
 
         <S.Input type="text" placeholder="Bairro" {...register('bairro')} />
 
