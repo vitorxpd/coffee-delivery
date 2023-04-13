@@ -5,6 +5,7 @@ import { Counter } from '../../../../components/Counter'
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
+import { ActionTypes } from '../../../../reducers/coffeesReducer'
 
 interface CoffeeCardProps {
   id: number
@@ -13,7 +14,7 @@ interface CoffeeCardProps {
 export function CoffeeCard({ id }: CoffeeCardProps) {
   const [amount, setAmount] = useState<number>(1)
 
-  const { coffeesState, addCoffeeToCart } = useContext(CoffeesContext)
+  const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
 
   const { coffees, cartItems } = coffeesState
 
@@ -35,7 +36,14 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
 
   function handleAddCoffeeToCart() {
     currentCartItemIndex === -1
-      ? addCoffeeToCart(coffee.id, coffee.price, amount)
+      ? coffeesDispatch({
+          type: ActionTypes.ADD_COFFEE,
+          payload: {
+            id: coffee.id,
+            price: coffee.price,
+            amount,
+          },
+        })
       : alert('O produto já foi adicionado!')
   }
 

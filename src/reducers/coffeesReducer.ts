@@ -1,7 +1,16 @@
-import { CoffeeProps } from '../../data/coffees'
-import { ActionTypes } from './actions'
+import { Coffee } from '../data/coffees'
 
-interface CartItemProps {
+export enum ActionTypes {
+  ADD_COFFEE = 'ADD_COFFEE',
+  DECREMENT_AMOUNT = 'DECREMENT_AMOUNT',
+  INCREMENT_AMOUNT = 'INCREMENT_AMOUNT',
+  REMOVE_COFFEE = 'REMOVE_COFFEE',
+  CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
+  UPDATE_TOTALIZERS = 'UPDATE_TOTALIZERS',
+  UPDATE_USER_DATA = 'UPDATE_USER_DATA',
+}
+
+interface CartItem {
   id: number
   price: number
   amount: number
@@ -13,14 +22,26 @@ interface Totalizers {
   total: number
 }
 
-export interface CoffeesStateProps {
-  coffees: CoffeeProps[]
-  cartItems: CartItemProps[]
-  cartQuantity: number
-  totalizers: Totalizers
+interface UserData {
+  cep: string
+  rua: string
+  numero: number
+  complemento?: string | undefined
+  bairro: string
+  cidade: string
+  uf: string
+  payment_method: string
 }
 
-export function coffeesReducer(state: CoffeesStateProps, action: any) {
+export interface CoffeesState {
+  coffees: Coffee[]
+  cartItems: CartItem[]
+  cartQuantity: number
+  totalizers: Totalizers
+  userData: UserData
+}
+
+export function coffeesReducer(state: CoffeesState, action: any) {
   const incrementCartQuantity = state.cartItems.length + 1
   const decrementCartQuantity = state.cartItems.length - 1
 
@@ -92,6 +113,14 @@ export function coffeesReducer(state: CoffeesStateProps, action: any) {
           shipping: 3.5,
           total: totalizer + state.totalizers.shipping,
         },
+      }
+    }
+    case ActionTypes.UPDATE_USER_DATA: {
+      const { data } = action.payload
+
+      return {
+        ...state,
+        userData: data,
       }
     }
     default: {

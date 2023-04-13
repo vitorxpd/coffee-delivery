@@ -10,6 +10,7 @@ import * as zod from 'zod'
 import { useNavigate } from 'react-router-dom'
 
 import * as S from './styles'
+import { ActionTypes } from '../../reducers/coffeesReducer'
 
 const checkoutValidationSchema = zod.object({
   cep: zod.string().min(8).max(8),
@@ -25,8 +26,7 @@ const checkoutValidationSchema = zod.object({
 type CheckoutData = zod.infer<typeof checkoutValidationSchema>
 
 export function Checkout() {
-  const { coffeesState, updateUserData, clearCartItems } =
-    useContext(CoffeesContext)
+  const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
 
   const { cartItems } = coffeesState
 
@@ -40,8 +40,17 @@ export function Checkout() {
 
   function handleSubmitCheckout(data: CheckoutData) {
     if (cartItems.length) {
-      updateUserData(data)
-      clearCartItems()
+      coffeesDispatch({
+        type: ActionTypes.CLEAR_CART_ITEMS,
+      })
+
+      coffeesDispatch({
+        type: ActionTypes.UPDATE_USER_DATA,
+        payload: {
+          data,
+        },
+      })
+
       navigate('/success')
     }
   }

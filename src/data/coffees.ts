@@ -13,7 +13,7 @@ import havaiano from '../assets/havaiano.svg'
 import arabe from '../assets/arabe.svg'
 import irlandes from '../assets/irlandes.svg'
 
-export interface CoffeeProps {
+export interface Coffee {
   id: number
   name: string
   description: string
@@ -23,7 +23,7 @@ export interface CoffeeProps {
   quantity: number
 }
 
-export const coffees: CoffeeProps[] = [
+export const coffees: Coffee[] = [
   {
     id: 1,
     name: 'Expresso Tradicional',

@@ -5,14 +5,14 @@ import { Trash } from 'phosphor-react'
 import { priceFormatter } from '../../../../utils/formatter'
 
 import * as S from './styles'
+import { ActionTypes } from '../../../../reducers/coffeesReducer'
 
 interface CartItemProps {
   id: number
 }
 
 export function CartItem({ id }: CartItemProps) {
-  const { coffeesState, decrementAmount, incrementAmount, removeCoffee } =
-    useContext(CoffeesContext)
+  const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
 
   const { coffees, cartItems } = coffeesState
 
@@ -27,15 +27,32 @@ export function CartItem({ id }: CartItemProps) {
   const formattedPriceAmount = priceFormatter(cartItem.price * cartItem.amount)
 
   function changeDecrementAmount() {
-    if (cartItem.amount > 1) decrementAmount(id)
+    if (cartItem.amount > 1)
+      coffeesDispatch({
+        type: ActionTypes.DECREMENT_AMOUNT,
+        payload: {
+          id,
+        },
+      })
   }
 
   function changeIncrementAmount() {
-    if (cartItem.amount < coffee.quantity) incrementAmount(id)
+    if (cartItem.amount < coffee.quantity)
+      coffeesDispatch({
+        type: ActionTypes.INCREMENT_AMOUNT,
+        payload: {
+          id,
+        },
+      })
   }
 
   function handleRemoveCoffee() {
-    removeCoffee(id)
+    coffeesDispatch({
+      type: ActionTypes.REMOVE_COFFEE,
+      payload: {
+        id,
+      },
+    })
   }
 
   return (

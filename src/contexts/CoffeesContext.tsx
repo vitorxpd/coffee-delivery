@@ -1,41 +1,20 @@
 import {
   createContext,
+  Dispatch,
   ReactNode,
   useEffect,
   useReducer,
-  useState,
 } from 'react'
 import { coffees } from '../data/coffees'
 import {
-  addCoffeeToCartAction,
-  clearCartItemsAction,
-  decrementAmountAction,
-  incrementAmountAction,
-  removeCoffeeAction,
-  updateTotalizersAction,
-} from '../reducers/coffees/actions'
-import { coffeesReducer, CoffeesStateProps } from '../reducers/coffees/reducer'
-
-interface UserData {
-  cep: string
-  rua: string
-  numero: number
-  complemento?: string | undefined
-  bairro: string
-  cidade: string
-  uf: string
-  payment_method: string
-}
+  ActionTypes,
+  coffeesReducer,
+  CoffeesState,
+} from '../reducers/coffeesReducer'
 
 interface CoffeesContextProps {
-  userData: UserData
-  coffeesState: CoffeesStateProps
-  updateUserData: (data: UserData) => void
-  addCoffeeToCart: (id: number, price: number, amount: number) => void
-  decrementAmount: (id: number) => void
-  incrementAmount: (id: number) => void
-  removeCoffee: (id: number) => void
-  clearCartItems: () => void
+  coffeesState: CoffeesState
+  coffeesDispatch: Dispatch<any>
 }
 
 interface CoffeesContextProviderProps {
@@ -47,8 +26,7 @@ export const CoffeesContext = createContext({} as CoffeesContextProps)
 export function CoffeesContextProvider({
   children,
 }: CoffeesContextProviderProps) {
-  const [userData, setUserData] = useState<UserData>(Object)
-  const [coffeesState, dispatch] = useReducer(coffeesReducer, {
+  const [coffeesState, coffeesDispatch] = useReducer(coffeesReducer, {
     coffees,
     cartItems: [],
     cartQuantity: 0,
@@ -57,51 +35,26 @@ export function CoffeesContextProvider({
       shipping: 3.5,
       total: 0,
     },
+    userData: {},
   })
 
-  function updateUserData(data: UserData) {
-    setUserData(data)
-  }
-
-  function addCoffeeToCart(id: number, price: number, amount: number) {
-    dispatch(addCoffeeToCartAction(id, price, amount))
-  }
-
-  function decrementAmount(id: number) {
-    dispatch(decrementAmountAction(id))
-  }
-
-  function incrementAmount(id: number) {
-    dispatch(incrementAmountAction(id))
-  }
-
-  function removeCoffee(id: number) {
-    dispatch(removeCoffeeAction(id))
-  }
-
-  function clearCartItems() {
-    dispatch(clearCartItemsAction())
-  }
+  const { cartItems } = coffeesState
 
   function updateTotalizers() {
-    dispatch(updateTotalizersAction())
+    coffeesDispatch({
+      type: ActionTypes.UPDATE_TOTALIZERS,
+    })
   }
 
   useEffect(() => {
     updateTotalizers()
-  }, [coffeesState.cartItems])
+  }, [cartItems])
 
   return (
     <CoffeesContext.Provider
       value={{
-        userData,
         coffeesState,
-        updateUserData,
-        addCoffeeToCart,
-        decrementAmount,
-        incrementAmount,
-        removeCoffee,
-        clearCartItems,
+        coffeesDispatch,
       }}
     >
       {children}
