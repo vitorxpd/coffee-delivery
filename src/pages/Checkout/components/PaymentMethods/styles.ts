@@ -36,17 +36,14 @@ export const DescriptionText = styled.span`
 
 export const PaymentMethodsContainer = styled.div`
   margin-top: ${pxToRem(32)};
-  display: flex;
-  gap: ${pxToRem(12)};
 
-  input[type='radio'].checked + label {
-    padding: ${pxToRem(15)};
-    background: ${(props) => props.theme['purple-light']};
-    border: 1px solid ${(props) => props.theme.purple};
+  .RadioGroupRoot {
+    display: flex;
+    gap: ${pxToRem(12)};
   }
 `
 
-export const RadioLabel = styled.label`
+export const RadioContent = styled.div`
   width: ${pxToRem(178)};
   padding: ${pxToRem(16)};
   display: flex;
@@ -67,9 +64,15 @@ export const RadioLabel = styled.label`
   svg {
     color: ${(props) => props.theme.purple};
   }
+
+  &[data-state='checked'] {
+    padding: ${pxToRem(15)};
+    background: ${(props) => props.theme['purple-light']};
+    border: 1px solid ${(props) => props.theme.purple};
+  }
 `
 
-export const TextLabel = styled.span`
+export const RadioText = styled.span`
   font-size: ${pxToRem(12)};
   color: ${(props) => props.theme['base-text']};
   text-transform: uppercase;

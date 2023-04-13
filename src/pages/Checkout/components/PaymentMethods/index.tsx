@@ -1,18 +1,11 @@
-import { useFormContext } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 
 import * as S from './styles'
 
 export function PaymentMethods() {
-  function handleSelectMethod(event: any) {
-    document
-      .querySelectorAll('input[type="radio"]')
-      .forEach((element) => element.classList.remove('checked'))
-
-    event.target.classList.add('checked')
-  }
-
-  const { register } = useFormContext()
+  const { control } = useFormContext()
 
   return (
     <S.PaymentMethodsWrapper>
@@ -26,44 +19,37 @@ export function PaymentMethods() {
         </S.PaymentDescriptionTextContainer>
       </S.PaymentDescriptionContainer>
       <S.PaymentMethodsContainer>
-        <input
-          type="radio"
-          id="credito"
-          value="credito"
-          onClick={handleSelectMethod}
-          hidden
-          {...register('payment_method')}
+        <Controller
+          control={control}
+          name="payment_method"
+          render={({ field }) => {
+            return (
+              <RadioGroup.Root
+                className="RadioGroupRoot"
+                onValueChange={field.onChange}
+              >
+                <RadioGroup.Item value="credito" asChild>
+                  <S.RadioContent>
+                    <CreditCard size={16} />
+                    <S.RadioText>Cartão de Crédito</S.RadioText>
+                  </S.RadioContent>
+                </RadioGroup.Item>
+                <RadioGroup.Item value="debito" asChild>
+                  <S.RadioContent>
+                    <Bank size={16} />
+                    <S.RadioText>Cartão de Débito</S.RadioText>
+                  </S.RadioContent>
+                </RadioGroup.Item>
+                <RadioGroup.Item value="dinheiro" asChild>
+                  <S.RadioContent>
+                    <Money size={16} />
+                    <S.RadioText>Dinheiro</S.RadioText>
+                  </S.RadioContent>
+                </RadioGroup.Item>
+              </RadioGroup.Root>
+            )
+          }}
         />
-        <S.RadioLabel htmlFor="credito">
-          <CreditCard size={16} />
-          <S.TextLabel>Cartão de Crédito</S.TextLabel>
-        </S.RadioLabel>
-
-        <input
-          type="radio"
-          id="debito"
-          value="debito"
-          onClick={handleSelectMethod}
-          hidden
-          {...register('payment_method')}
-        />
-        <S.RadioLabel htmlFor="debito">
-          <Bank size={16} />
-          <S.TextLabel>Cartão de Débito</S.TextLabel>
-        </S.RadioLabel>
-
-        <input
-          type="radio"
-          id="dinheiro"
-          value="dinheiro"
-          onClick={handleSelectMethod}
-          hidden
-          {...register('payment_method')}
-        />
-        <S.RadioLabel htmlFor="dinheiro">
-          <Money size={16} />
-          <S.TextLabel>Dinheiro</S.TextLabel>
-        </S.RadioLabel>
       </S.PaymentMethodsContainer>
     </S.PaymentMethodsWrapper>
   )
