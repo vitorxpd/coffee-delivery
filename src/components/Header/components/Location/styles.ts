@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const LocationContainer = styled.div`
+export const LocationWrapper = styled.div`
   padding: ${pxToRem(8)};
   display: flex;
   justify-content: center;

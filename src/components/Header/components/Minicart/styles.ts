@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
-export const MinicartContainer = styled.button`
+export const MinicartButton = styled.button`
   padding: ${pxToRem(8)};
   display: flex;
   justify-content: center;

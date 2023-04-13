@@ -7,7 +7,7 @@ import logo from '../../assets/coffee-delivery-logo.svg'
 
 export function Header() {
   return (
-    <S.HeaderContainer>
+    <S.HeaderWrapper>
       <Link to="/">
         <img src={logo} alt="" />
       </Link>
@@ -15,6 +15,6 @@ export function Header() {
         <Location />
         <Minicart />
       </S.HeaderRight>
-    </S.HeaderContainer>
+    </S.HeaderWrapper>
   )
 }

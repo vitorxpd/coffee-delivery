@@ -26,11 +26,11 @@ export function Location() {
   }, [address])
 
   return (
-    <S.LocationContainer>
+    <S.LocationWrapper>
       <MapPin size={22} />
       <S.LocationText>
         {place.length ? place.join(', ') : 'Endereço não informado.'}
       </S.LocationText>
-    </S.LocationContainer>
+    </S.LocationWrapper>
   )
 }

@@ -17,13 +17,13 @@ export function Minicart() {
   }
 
   return (
-    <S.MinicartContainer onClick={handleCartNavigate}>
+    <S.MinicartButton onClick={handleCartNavigate}>
       <ShoppingCart size={22} />
       {cartQuantity >= 1 && (
         <S.BadgeContainer>
           <S.BadgeQuantity>{cartQuantity}</S.BadgeQuantity>
         </S.BadgeContainer>
       )}
-    </S.MinicartContainer>
+    </S.MinicartButton>
   )
 }
