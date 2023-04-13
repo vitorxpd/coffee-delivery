@@ -36,7 +36,7 @@ export function Checkout() {
     resolver: zodResolver(checkoutValidationSchema),
   })
 
-  const { handleSubmit /* formState */ } = checkoutForm
+  const { handleSubmit, reset } = checkoutForm
 
   function handleSubmitCheckout(data: CheckoutData) {
     if (cartItems.length) {
@@ -52,10 +52,11 @@ export function Checkout() {
       })
 
       navigate('/success')
+      reset()
+    } else {
+      alert('Adicione itens ao carrinho!')
     }
   }
-
-  /* console.log(formState.errors) */
 
   return (
     <S.CheckoutWrapper>
