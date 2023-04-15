@@ -32,7 +32,7 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
   }
 
   function incrementQuantity() {
-    if (quantity < coffee.quantity) setQuantity((state) => state + 1)
+    if (quantity < coffee.availableQuantity) setQuantity((state) => state + 1)
   }
 
   function handleAddCoffeeToCart() {

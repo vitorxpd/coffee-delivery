@@ -38,7 +38,7 @@ export function CartItem({ id }: CartItemProps) {
   }
 
   function incrementQuantity() {
-    if (cartItem.quantity < coffee.quantity)
+    if (cartItem.quantity < coffee.availableQuantity)
       coffeesDispatch({
         type: ActionTypes.INCREMENT_QUANTITY,
         payload: {

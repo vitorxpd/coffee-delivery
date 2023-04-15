@@ -13,17 +13,7 @@ import havaiano from '../assets/havaiano.svg'
 import arabe from '../assets/arabe.svg'
 import irlandes from '../assets/irlandes.svg'
 
-export interface Coffee {
-  id: number
-  name: string
-  description: string
-  imageUrl: string
-  price: number
-  tags: string[]
-  quantity: number
-}
-
-export const coffees: Coffee[] = [
+export const coffees = [
   {
     id: 1,
     name: 'Expresso Tradicional',
@@ -31,7 +21,7 @@ export const coffees: Coffee[] = [
     imageUrl: expresso,
     price: 9.9,
     tags: ['Tradicional'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 2,
@@ -40,7 +30,7 @@ export const coffees: Coffee[] = [
     imageUrl: americano,
     price: 9.9,
     tags: ['Tradicional'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 3,
@@ -49,7 +39,7 @@ export const coffees: Coffee[] = [
     imageUrl: expressoCremoso,
     price: 9.9,
     tags: ['Tradicional'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 4,
@@ -58,7 +48,7 @@ export const coffees: Coffee[] = [
     imageUrl: cafeGelado,
     price: 9.9,
     tags: ['Tradicional', 'Gelado'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 5,
@@ -67,7 +57,7 @@ export const coffees: Coffee[] = [
     imageUrl: cafeComLeite,
     price: 9.9,
     tags: ['Tradicional', 'Com Leite'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 6,
@@ -77,7 +67,7 @@ export const coffees: Coffee[] = [
     imageUrl: latte,
     price: 9.9,
     tags: ['Tradicional', 'Com Leite'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 7,
@@ -87,7 +77,7 @@ export const coffees: Coffee[] = [
     imageUrl: capuccino,
     price: 9.9,
     tags: ['Tradicional', 'Com Leite'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 8,
@@ -97,7 +87,7 @@ export const coffees: Coffee[] = [
     imageUrl: macchiato,
     price: 9.9,
     tags: ['Tradicional', 'Com Leite'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 9,
@@ -106,7 +96,7 @@ export const coffees: Coffee[] = [
     imageUrl: mocaccino,
     price: 9.9,
     tags: ['Tradicional', 'Com Leite'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 10,
@@ -115,7 +105,7 @@ export const coffees: Coffee[] = [
     imageUrl: chocolateQuente,
     price: 9.9,
     tags: ['Tradicional', 'Com Leite'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 11,
@@ -125,7 +115,7 @@ export const coffees: Coffee[] = [
     imageUrl: cubano,
     price: 9.9,
     tags: ['Especial', 'Alcoólico', 'Gelado'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 12,
@@ -134,7 +124,7 @@ export const coffees: Coffee[] = [
     imageUrl: havaiano,
     price: 9.9,
     tags: ['Especial'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 13,
@@ -143,7 +133,7 @@ export const coffees: Coffee[] = [
     imageUrl: arabe,
     price: 9.9,
     tags: ['Especial'],
-    quantity: 3,
+    availableQuantity: 3,
   },
   {
     id: 14,
@@ -152,6 +142,6 @@ export const coffees: Coffee[] = [
     imageUrl: irlandes,
     price: 9.9,
     tags: ['Especial', 'Alcoólico'],
-    quantity: 3,
+    availableQuantity: 3,
   },
 ]
