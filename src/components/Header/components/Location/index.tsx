@@ -5,7 +5,7 @@ import { useMapsReverseGeocoding } from '../../../../hooks/useMapsReverseGeocodi
 import * as S from './styles'
 
 export function Location() {
-  const [place, setPlace] = useState<string[]>([])
+  const [location, setLocation] = useState<string[]>([])
 
   const address = useMapsReverseGeocoding()
 
@@ -13,11 +13,11 @@ export function Location() {
     if (Object.keys(address).length) {
       address.address_components.map((adr) => {
         if (adr.types.includes('administrative_area_level_2')) {
-          setPlace([adr.long_name])
+          setLocation([adr.long_name])
         }
 
         if (adr.types.includes('administrative_area_level_1')) {
-          setPlace((state) => [...state, adr.short_name])
+          setLocation((state) => [...state, adr.short_name])
         }
 
         return adr
@@ -29,7 +29,7 @@ export function Location() {
     <S.LocationWrapper>
       <MapPin size={22} />
       <S.LocationText>
-        {place.length ? place.join(', ') : 'Endereço não informado.'}
+        {location.length ? location.join(', ') : 'Endereço não informado.'}
       </S.LocationText>
     </S.LocationWrapper>
   )
