@@ -9,20 +9,14 @@ export function CoffeeList() {
 
   const coffees = coffeesState.coffees
 
-  function coffeeLoop() {
-    return (
+  return (
+    <S.CoffeeListWrapper>
+      <S.ListTitle>Nossos cafés</S.ListTitle>
       <S.ListWrapper>
         {coffees.map((coffee) => {
           return <CoffeeCard id={coffee.id} key={coffee.id} />
         })}
       </S.ListWrapper>
-    )
-  }
-
-  return (
-    <S.CoffeeListWrapper>
-      <S.ListTitle>Nossos cafés</S.ListTitle>
-      {coffeeLoop()}
     </S.CoffeeListWrapper>
   )
 }
