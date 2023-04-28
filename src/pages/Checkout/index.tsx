@@ -26,9 +26,7 @@ const checkoutValidationSchema = zod.object({
 type CheckoutData = zod.infer<typeof checkoutValidationSchema>
 
 export function Checkout() {
-  const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
-
-  const { cartItems } = coffeesState
+  const [{ cartItems }, coffeesDispatch] = useContext(CoffeesContext)
 
   const navigate = useNavigate()
 

@@ -13,9 +13,7 @@ interface CartItemProps {
 }
 
 export function CartItem({ id }: CartItemProps) {
-  const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
-
-  const { coffees, cartItems } = coffeesState
+  const [{ coffees, cartItems }, coffeesDispatch] = useContext(CoffeesContext)
 
   const currentCoffeeIndex = coffees.findIndex((coffee) => coffee.id === id)
 

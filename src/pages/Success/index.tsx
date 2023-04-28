@@ -6,9 +6,7 @@ import * as S from './styles'
 import success from '../../assets/success.svg'
 
 export function Success() {
-  const { coffeesState } = useContext(CoffeesContext)
-
-  const { userData } = coffeesState
+  const [{ userData }] = useContext(CoffeesContext)
 
   return (
     <S.SuccessWrapper>

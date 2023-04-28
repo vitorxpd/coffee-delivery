@@ -6,9 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import * as S from './styles'
 
 export function Minicart() {
-  const { coffeesState } = useContext(CoffeesContext)
-
-  const { cartQuantity } = coffeesState
+  const [{ cartQuantity }] = useContext(CoffeesContext)
 
   const navigate = useNavigate()
 

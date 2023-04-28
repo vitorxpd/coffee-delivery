@@ -15,9 +15,7 @@ interface CoffeeCardProps {
 export function CoffeeCard({ id }: CoffeeCardProps) {
   const [quantity, setQuantity] = useState<number>(1)
 
-  const { coffeesState, coffeesDispatch } = useContext(CoffeesContext)
-
-  const { coffees, cartItems } = coffeesState
+  const [{ coffees, cartItems }, coffeesDispatch] = useContext(CoffeesContext)
 
   const currentCoffeeIndex = coffees.findIndex((coffee) => coffee.id === id)
 

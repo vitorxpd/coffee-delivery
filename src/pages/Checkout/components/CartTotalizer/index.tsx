@@ -6,9 +6,7 @@ import { priceFormatter } from '../../../../utils/formatter'
 import * as S from './styles'
 
 export function CartTotalizer() {
-  const { coffeesState } = useContext(CoffeesContext)
-
-  const { cartItems, totalizers } = coffeesState
+  const [{ cartItems, totalizers }] = useContext(CoffeesContext)
 
   return (
     <S.CartTotalizerWrapper>

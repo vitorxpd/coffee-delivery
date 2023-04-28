@@ -1,7 +1,7 @@
 import {
   createContext,
   Dispatch,
-  ReactNode,
+  PropsWithChildren,
   useEffect,
   useReducer,
 } from 'react'
@@ -12,16 +12,7 @@ import {
   CoffeesState,
 } from '../reducers/coffeesReducer'
 
-interface CoffeesContextProps {
-  coffeesState: CoffeesState
-  coffeesDispatch: Dispatch<any>
-}
-
-interface CoffeesContextProviderProps {
-  children: ReactNode
-}
-
-const coffeesInitialState = {
+const coffeesInitialState: CoffeesState = {
   coffees,
   cartItems: [],
   cartQuantity: 0,
@@ -30,14 +21,23 @@ const coffeesInitialState = {
     shipping: 3.5,
     total: 0,
   },
-  userData: {},
+  userData: {
+    bairro: '',
+    cep: '',
+    cidade: '',
+    numero: 0,
+    payment_method: '',
+    rua: '',
+    uf: '',
+    complemento: '',
+  },
 }
 
-export const CoffeesContext = createContext({} as CoffeesContextProps)
+export const CoffeesContext = createContext<
+  [coffeesState: CoffeesState, coffeesDispatch: Dispatch<any>]
+>([coffeesInitialState, () => {}])
 
-export function CoffeesContextProvider({
-  children,
-}: CoffeesContextProviderProps) {
+export function CoffeesContextProvider({ children }: PropsWithChildren) {
   const [coffeesState, coffeesDispatch] = useReducer(
     coffeesReducer,
     coffeesInitialState,
@@ -56,12 +56,7 @@ export function CoffeesContextProvider({
   }, [cartItems])
 
   return (
-    <CoffeesContext.Provider
-      value={{
-        coffeesState,
-        coffeesDispatch,
-      }}
-    >
+    <CoffeesContext.Provider value={[coffeesState, coffeesDispatch]}>
       {children}
     </CoffeesContext.Provider>
   )

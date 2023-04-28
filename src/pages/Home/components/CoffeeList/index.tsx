@@ -5,9 +5,7 @@ import { CoffeeCard } from '../CoffeeCard'
 import * as S from './styles'
 
 export function CoffeeList() {
-  const { coffeesState } = useContext(CoffeesContext)
-
-  const coffees = coffeesState.coffees
+  const [{ coffees }] = useContext(CoffeesContext)
 
   return (
     <S.CoffeeListWrapper>

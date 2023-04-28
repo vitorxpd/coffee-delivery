@@ -5,9 +5,7 @@ import { CartItem } from '../CartItem'
 import * as S from './styles'
 
 export function CartList() {
-  const { coffeesState } = useContext(CoffeesContext)
-
-  const { cartItems } = coffeesState
+  const [{ cartItems }] = useContext(CoffeesContext)
 
   return (
     <S.CartListWrapper>
