@@ -8,11 +8,11 @@ import { CoffeesContextProvider } from './contexts/CoffeesContext'
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
-        <CoffeesContextProvider>
+      <CoffeesContextProvider>
+        <BrowserRouter>
           <Router />
-        </CoffeesContextProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </CoffeesContextProvider>
       <GlobalStyle />
     </ThemeProvider>
   )
