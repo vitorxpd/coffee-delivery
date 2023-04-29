@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { pxToRem } from '../../../../utils/pxToRem'
 
 export const StampsWrapper = styled.div`
@@ -6,6 +6,12 @@ export const StampsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+`
+
+export const StampContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${pxToRem(12)};
 `
 
 const VARIANT_COLORS = {
@@ -17,19 +23,12 @@ const VARIANT_COLORS = {
 
 interface StampItemProps {
   variant: keyof typeof VARIANT_COLORS
-  customSize?: boolean
 }
 
 export const StampItem = styled.div<StampItemProps>`
   display: flex;
   align-items: center;
   gap: ${pxToRem(12)};
-
-  ${(props) =>
-    props.customSize &&
-    css`
-      width: ${pxToRem(251)};
-    `};
 
   div {
     padding: ${pxToRem(8)};
