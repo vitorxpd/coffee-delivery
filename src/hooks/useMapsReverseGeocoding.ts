@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 interface Position {
   coords: {
@@ -21,27 +21,40 @@ interface Address {
 export function useMapsReverseGeocoding() {
   const [address, setAddress] = useState<Address>(Object)
 
-  async function getAddress({ coords }: Position) {
-    const { latitude, longitude } = coords
+  const baseURL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${latitude}+${longitude}&key=${
-        import.meta.env.VITE_MAPS_KEY
-      }`,
-    )
+  const MAPS_KEY = import.meta.env.VITE_MAPS_KEY
 
-    const data = await response.json()
+  const getAddress = useCallback(
+    async ({ coords }: Position) => {
+      const { latitude, longitude } = coords
 
-    setAddress({
-      address_components: data.results[0].address_components,
-      formatted_address: data.results[0].formatted_address,
-    })
-  }
+      try {
+        const response = await fetch(
+          `${baseURL}?address=${latitude}+${longitude}&key=${MAPS_KEY}`,
+        )
+
+        const data = await response.json()
+
+        if (response.ok) {
+          setAddress({
+            address_components: data.results[0].address_components,
+            formatted_address: data.results[0].formatted_address,
+          })
+        } else {
+          console.log('Status: ', response.status)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [MAPS_KEY],
+  )
 
   useEffect(() => {
     if (!Object.keys(address).length)
       navigator.geolocation.getCurrentPosition(getAddress)
-  }, [address])
+  }, [address, getAddress])
 
   return address
 }
