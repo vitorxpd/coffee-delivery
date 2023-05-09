@@ -1,12 +1,4 @@
-export enum ActionTypes {
-  ADD_COFFEE = 'ADD_COFFEE',
-  DECREMENT_QUANTITY = 'DECREMENT_QUANTITY',
-  INCREMENT_QUANTITY = 'INCREMENT_QUANTITY',
-  REMOVE_COFFEE = 'REMOVE_COFFEE',
-  CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
-  UPDATE_TOTALIZERS = 'UPDATE_TOTALIZERS',
-  UPDATE_USER_DATA = 'UPDATE_USER_DATA',
-}
+import { UserData } from '../pages/Checkout'
 
 interface Coffee {
   id: number
@@ -30,17 +22,6 @@ interface Totalizers {
   total: number
 }
 
-interface UserData {
-  cep: string
-  rua: string
-  numero: number
-  complemento?: string | undefined
-  bairro: string
-  cidade: string
-  uf: string
-  payment_method: string
-}
-
 export interface CoffeesState {
   coffees: Coffee[]
   cartItems: CartItem[]
@@ -49,10 +30,34 @@ export interface CoffeesState {
   userData: UserData
 }
 
-export function coffeesReducer(state: CoffeesState, action: any) {
-  switch (action.type) {
+export enum ActionTypes {
+  ADD_COFFEE = 'ADD_COFFEE',
+  DECREMENT_QUANTITY = 'DECREMENT_QUANTITY',
+  INCREMENT_QUANTITY = 'INCREMENT_QUANTITY',
+  REMOVE_COFFEE = 'REMOVE_COFFEE',
+  CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
+  UPDATE_TOTALIZERS = 'UPDATE_TOTALIZERS',
+  UPDATE_USER_DATA = 'UPDATE_USER_DATA',
+}
+
+interface Payload {
+  id: number
+  price: number
+  quantity: number
+  data: UserData
+}
+
+interface CoffeesAction {
+  type: ActionTypes
+  payload?: Payload
+}
+
+export function coffeesReducer(state: CoffeesState, action: CoffeesAction) {
+  const { type, payload } = action
+
+  switch (type) {
     case ActionTypes.ADD_COFFEE: {
-      const { id, price, quantity } = action.payload
+      const { id, price, quantity } = payload!
 
       return {
         ...state,
@@ -61,7 +66,7 @@ export function coffeesReducer(state: CoffeesState, action: any) {
       }
     }
     case ActionTypes.DECREMENT_QUANTITY: {
-      const { id } = action.payload
+      const { id } = payload!
 
       return {
         ...state,
@@ -75,7 +80,7 @@ export function coffeesReducer(state: CoffeesState, action: any) {
       }
     }
     case ActionTypes.INCREMENT_QUANTITY: {
-      const { id } = action.payload
+      const { id } = payload!
 
       return {
         ...state,
@@ -89,7 +94,8 @@ export function coffeesReducer(state: CoffeesState, action: any) {
       }
     }
     case ActionTypes.REMOVE_COFFEE: {
-      const { id } = action.payload
+      const { id } = payload!
+
       const filteredCoffees = state.cartItems.filter((item) => item.id !== id)
 
       return {
@@ -120,7 +126,7 @@ export function coffeesReducer(state: CoffeesState, action: any) {
       }
     }
     case ActionTypes.UPDATE_USER_DATA: {
-      const { data } = action.payload
+      const { data } = payload!
 
       return {
         ...state,

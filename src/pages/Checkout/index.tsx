@@ -15,34 +15,34 @@ import * as S from './styles'
 const checkoutValidationSchema = zod.object({
   cep: zod.string().min(8).max(8),
   rua: zod.string().min(2).max(20),
-  numero: zod.number(),
+  numero: zod.number().nullable(),
   complemento: zod.string().optional(),
   bairro: zod.string().min(2).max(20),
   cidade: zod.string().min(2).max(20),
   uf: zod.string().min(2).max(2),
-  payment_method: zod.enum(['credito', 'debito', 'dinheiro']),
+  payment_method: zod.enum(['credito', 'debito', 'dinheiro']).nullable(),
 })
 
-type CheckoutData = zod.infer<typeof checkoutValidationSchema>
+export type UserData = zod.infer<typeof checkoutValidationSchema>
 
 export function Checkout() {
-  const [{ cartItems }, coffeesDispatch] = useContext(CoffeesContext)
+  const [{ cartItems }, dispatch] = useContext(CoffeesContext)
 
   const navigate = useNavigate()
 
-  const checkoutForm = useForm<CheckoutData>({
+  const checkoutForm = useForm<UserData>({
     resolver: zodResolver(checkoutValidationSchema),
   })
 
   const { handleSubmit, reset } = checkoutForm
 
-  function handleSubmitCheckout(data: CheckoutData) {
+  function handleSubmitCheckout(data: UserData) {
     if (cartItems.length) {
-      coffeesDispatch({
+      dispatch({
         type: ActionTypes.CLEAR_CART_ITEMS,
       })
 
-      coffeesDispatch({
+      dispatch({
         type: ActionTypes.UPDATE_USER_DATA,
         payload: {
           data,

@@ -7,9 +7,9 @@ import {
 } from 'react'
 import { coffees } from '../mocks/coffees'
 import {
-  ActionTypes,
   coffeesReducer,
   CoffeesState,
+  ActionTypes,
 } from '../reducers/coffeesReducer'
 
 const coffeesInitialState: CoffeesState = {
@@ -25,8 +25,8 @@ const coffeesInitialState: CoffeesState = {
     bairro: '',
     cep: '',
     cidade: '',
-    numero: 0,
-    payment_method: '',
+    numero: null,
+    payment_method: null,
     rua: '',
     uf: '',
     complemento: '',
@@ -34,19 +34,16 @@ const coffeesInitialState: CoffeesState = {
 }
 
 export const CoffeesContext = createContext<
-  [coffeesState: CoffeesState, coffeesDispatch: Dispatch<any>]
+  [state: CoffeesState, dispatch: Dispatch<any>]
 >([coffeesInitialState, () => {}])
 
 export function CoffeesContextProvider({ children }: PropsWithChildren) {
-  const [coffeesState, coffeesDispatch] = useReducer(
-    coffeesReducer,
-    coffeesInitialState,
-  )
+  const [state, dispatch] = useReducer(coffeesReducer, coffeesInitialState)
 
-  const { cartItems } = coffeesState
+  const { cartItems } = state
 
   function updateTotalizers() {
-    coffeesDispatch({
+    dispatch({
       type: ActionTypes.UPDATE_TOTALIZERS,
     })
   }
@@ -56,7 +53,7 @@ export function CoffeesContextProvider({ children }: PropsWithChildren) {
   }, [cartItems])
 
   return (
-    <CoffeesContext.Provider value={[coffeesState, coffeesDispatch]}>
+    <CoffeesContext.Provider value={[state, dispatch]}>
       {children}
     </CoffeesContext.Provider>
   )
