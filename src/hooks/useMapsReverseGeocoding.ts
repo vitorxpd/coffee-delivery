@@ -29,31 +29,28 @@ export function useMapsReverseGeocoding() {
     async ({ coords }: Position) => {
       const { latitude, longitude } = coords
 
-      try {
-        const response = await fetch(
-          `${baseURL}?address=${latitude}+${longitude}&key=${MAPS_KEY}`,
-        )
+      fetch(`${baseURL}?address=${latitude}+${longitude}&key=${MAPS_KEY}`)
+        .then(async (response) => {
+          const json = await response.json()
 
-        const data = await response.json()
-
-        if (response.ok) {
           setAddress({
-            address_components: data.results[0].address_components,
-            formatted_address: data.results[0].formatted_address,
+            address_components: json.results[0].address_components,
+            formatted_address: json.results[0].formatted_address,
           })
-        } else {
-          console.log('Status: ', response.status)
-        }
-      } catch (error) {
-        console.log(error)
-      }
+        })
+        .catch((error) => {
+          console.log('Ocorreu um erro: ', error)
+        })
     },
     [MAPS_KEY],
   )
 
   useEffect(() => {
-    if (!Object.keys(address).length)
+    if (!Object.keys(address).length && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getAddress)
+    } else {
+      console.log('Ocorreu um erro ao obter o endereço.')
+    }
   }, [address, getAddress])
 
   return address
