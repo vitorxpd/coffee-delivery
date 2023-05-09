@@ -13,7 +13,7 @@ interface CartItemProps {
 }
 
 export function CartItem({ id }: CartItemProps) {
-  const [{ coffees, cartItems }, coffeesDispatch] = useContext(CoffeesContext)
+  const [{ coffees, cartItems }, dispatch] = useContext(CoffeesContext)
 
   const currentCoffeeIndex = coffees.findIndex((coffee) => coffee.id === id)
 
@@ -27,7 +27,7 @@ export function CartItem({ id }: CartItemProps) {
 
   function decrementQuantity() {
     if (cartItem.quantity > 1)
-      coffeesDispatch({
+      dispatch({
         type: ActionTypes.DECREMENT_QUANTITY,
         payload: {
           id,
@@ -37,7 +37,7 @@ export function CartItem({ id }: CartItemProps) {
 
   function incrementQuantity() {
     if (cartItem.quantity < coffee.availableQuantity)
-      coffeesDispatch({
+      dispatch({
         type: ActionTypes.INCREMENT_QUANTITY,
         payload: {
           id,
@@ -46,7 +46,7 @@ export function CartItem({ id }: CartItemProps) {
   }
 
   function handleRemoveCoffee() {
-    coffeesDispatch({
+    dispatch({
       type: ActionTypes.REMOVE_COFFEE,
       payload: {
         id,
