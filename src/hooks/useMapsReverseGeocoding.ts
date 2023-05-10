@@ -26,7 +26,7 @@ export function useMapsReverseGeocoding() {
   const MAPS_KEY = import.meta.env.VITE_MAPS_KEY
 
   const getAddress = useCallback(
-    async ({ coords }: Position) => {
+    ({ coords }: Position) => {
       const { latitude, longitude } = coords
 
       fetch(`${baseURL}?address=${latitude}+${longitude}&key=${MAPS_KEY}`)
