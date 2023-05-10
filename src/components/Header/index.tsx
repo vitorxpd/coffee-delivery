@@ -3,7 +3,7 @@ import { Location } from './components/Location'
 import { Minicart } from './components/Minicart'
 
 import * as S from './styles'
-import logo from '../../assets/coffee-delivery-logo.svg'
+import logo from '../../assets/logo.svg'
 
 export function Header() {
   return (

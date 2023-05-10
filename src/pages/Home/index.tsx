@@ -3,7 +3,7 @@ import { MainTitle } from './components/MainTitle'
 import { CoffeeList } from './components/CoffeeList'
 
 import * as S from './styles'
-import banner from '../../assets/coffee-delivery-banner.svg'
+import banner from '../../assets/banner.svg'
 
 export function Home() {
   return (
