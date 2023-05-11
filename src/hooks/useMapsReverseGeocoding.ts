@@ -23,7 +23,7 @@ export function useMapsReverseGeocoding() {
 
   const baseURL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
-  const MAPS_KEY = import.meta.env.VITE_MAPS_KEY
+  const MAPS_KEY = import.meta.env.VITE_MAPS_KEY ?? process.env.VARIABLE_NAME
 
   const getAddress = useCallback(
     ({ coords }: Position) => {
