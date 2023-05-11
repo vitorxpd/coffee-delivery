@@ -38,13 +38,17 @@ export function useMapsReverseGeocoding() {
         .then(async (response) => {
           const json = await response.json()
 
-          setAddress({
-            address_components: json.results[0].address_components,
-            formatted_address: json.results[0].formatted_address,
-          })
+          if (json.status === 'OK') {
+            setAddress({
+              address_components: json.results[0].address_components,
+              formatted_address: json.results[0].formatted_address,
+            })
+          } else {
+            console.log(`Google API Error: ${json.status}`)
+          }
         })
         .catch((error) => {
-          console.log('Ocorreu um erro: ', error)
+          console.log(`Erro ao obter geolocalização: ${error}`)
         })
     },
     [MAPS_KEY],
