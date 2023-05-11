@@ -8,7 +8,7 @@ export function Location() {
   const [city, setCity] = useState<string | null>(null)
   const [state, setState] = useState<string | null>(null)
 
-  const { addressComponents } = useLocationInfo()
+  const { addressComponents, formattedAddress } = useLocationInfo()
 
   useEffect(() => {
     if (addressComponents && !city && !state) {
@@ -18,6 +18,7 @@ export function Location() {
         } else if (component.types.includes('administrative_area_level_1')) {
           setState(component.short_name)
         } else if (city && state) {
+          console.log(formattedAddress)
           break
         }
       }
