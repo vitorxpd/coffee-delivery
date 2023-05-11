@@ -22,37 +22,32 @@ interface Address {
 export function useMapsReverseGeocoding() {
   const [address, setAddress] = useState<Address>(Object)
 
-  const baseURL = 'https://maps.googleapis.com/maps/api/geocode/json'
+  const getAddress = useCallback(({ coords }: Position) => {
+    const { latitude, longitude } = coords
 
-  const MAPS_KEY = isLocalhost
-    ? import.meta.env.VITE_MAPS_KEY
-    : process.env.MAPS_KEY
+    const key = isLocalhost
+      ? import.meta.env.VITE_MAPS_KEY
+      : process.env.MAPS_KEY
 
-  const getAddress = useCallback(
-    ({ coords }: Position) => {
-      const { latitude, longitude } = coords
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${latitude}+${longitude}&key=${key}`
 
-      const url = `${baseURL}?address=${latitude}+${longitude}&key=${MAPS_KEY}`
+    fetch(url)
+      .then(async (response) => {
+        const json = await response.json()
 
-      fetch(url)
-        .then(async (response) => {
-          const json = await response.json()
-
-          if (json.status === 'OK') {
-            setAddress({
-              address_components: json.results[0].address_components,
-              formatted_address: json.results[0].formatted_address,
-            })
-          } else {
-            console.log(`Google API Error: ${json.status}`)
-          }
-        })
-        .catch((error) => {
-          console.log(`Erro ao obter geolocalização: ${error}`)
-        })
-    },
-    [MAPS_KEY],
-  )
+        if (json.status === 'OK') {
+          setAddress({
+            address_components: json.results[0].address_components,
+            formatted_address: json.results[0].formatted_address,
+          })
+        } else {
+          console.log(`Google API Error: ${json.status}`)
+        }
+      })
+      .catch((error) => {
+        console.log(`Erro ao obter geolocalização: ${error}`)
+      })
+  }, [])
 
   useEffect(() => {
     if (!Object.keys(address).length) {
