@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface AddressComponent {
   long_name: string
@@ -11,11 +11,9 @@ interface Location {
   formattedAddress: string | null
 }
 
-export function useLocationInfo() {
-  const [location, setLocation] = useState<Location>({
-    addressComponents: null,
-    formattedAddress: null,
-  })
+export function useLocationInfo(): Location {
+  const [addressComponents, setAddressComponents] = useState(null)
+  const [formattedAddress, setFormattedAddress] = useState(null)
 
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_MAPS_KEY
@@ -27,10 +25,8 @@ export function useLocationInfo() {
       fetch(url)
         .then(async (response) => {
           const json = await response.json()
-          setLocation({
-            addressComponents: json.results[0].address_components,
-            formattedAddress: json.results[0].formatted_address,
-          })
+          setAddressComponents(json.results[0].address_components)
+          setFormattedAddress(json.results[0].formatted_address)
         })
         .catch((error) => {
           console.log(`Erro ao obter localização: ${error}`)
@@ -38,5 +34,5 @@ export function useLocationInfo() {
     })
   }, [])
 
-  return location
+  return { addressComponents, formattedAddress }
 }
