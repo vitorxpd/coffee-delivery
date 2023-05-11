@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { isLocalhost } from '../utils/isLocalhost'
 
 interface Position {
   coords: {
@@ -23,7 +24,9 @@ export function useMapsReverseGeocoding() {
 
   const baseURL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
-  const MAPS_KEY = import.meta.env.VITE_MAPS_KEY ?? process.env.VITE_MAPS_KEY
+  const MAPS_KEY = isLocalhost
+    ? import.meta.env.VITE_MAPS_KEY
+    : process.env.MAPS_KEY
 
   const getAddress = useCallback(
     ({ coords }: Position) => {
