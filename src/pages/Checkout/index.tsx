@@ -30,7 +30,7 @@ export type UserData = zod.infer<typeof checkoutValidationSchema>
 export function Checkout() {
   const [alert, setAlert] = useState(false)
 
-  const [_, dispatch] = useContext(CoffeesContext)
+  const [{ cartQuantity }, dispatch] = useContext(CoffeesContext)
 
   const navigate = useNavigate()
 
@@ -57,6 +57,8 @@ export function Checkout() {
   function toggleAlert() {
     setAlert(!alert)
   }
+
+  if (!cartQuantity) return <S.EmptyTitle>O carrinho está vazio.</S.EmptyTitle>
 
   return (
     <S.CheckoutWrapper>
