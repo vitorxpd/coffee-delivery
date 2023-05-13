@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react'
+import * as AlertDialog from '@radix-ui/react-alert-dialog'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 import { Counter } from '../../../../components/Counter'
 import { ActionTypes } from '../../../../reducers/coffeesReducer'
+import { Alert } from '../../../../components/Alert'
 import { ShoppingCart } from 'phosphor-react'
 
 import { priceFormatter } from '../../../../utils/helpers'
@@ -14,6 +16,7 @@ interface CoffeeCardProps {
 
 export function CoffeeCard({ id }: CoffeeCardProps) {
   const [quantity, setQuantity] = useState<number>(1)
+  const [alert, setAlert] = useState(false)
 
   const [{ coffees, cartItems }, dispatch] = useContext(CoffeesContext)
 
@@ -33,17 +36,23 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
     if (quantity < coffee.availableQuantity) setQuantity((state) => state + 1)
   }
 
+  function toggleAlert() {
+    setAlert(!alert)
+  }
+
   function handleAddCoffeeToCart() {
-    currentCartItemIndex === -1
-      ? dispatch({
-          type: ActionTypes.ADD_COFFEE,
-          payload: {
-            id: coffee.id,
-            price: coffee.price,
-            quantity,
-          },
-        })
-      : alert('O produto já foi adicionado!')
+    if (currentCartItemIndex === -1) {
+      dispatch({
+        type: ActionTypes.ADD_COFFEE,
+        payload: {
+          id: coffee.id,
+          price: coffee.price,
+          quantity,
+        },
+      })
+    } else {
+      toggleAlert()
+    }
   }
 
   return (
@@ -70,9 +79,17 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
             onDecrementQuantity={decrementQuantity}
             onIncrementQuantity={incrementQuantity}
           />
-          <S.BuyButton onClick={handleAddCoffeeToCart}>
-            <ShoppingCart size={22} />
-          </S.BuyButton>
+          <AlertDialog.Root open={alert}>
+            <AlertDialog.Trigger asChild>
+              <S.BuyButton onClick={handleAddCoffeeToCart}>
+                <ShoppingCart size={22} />
+              </S.BuyButton>
+            </AlertDialog.Trigger>
+            <Alert
+              description="Você já adicionou este produto!"
+              onToggleAlert={toggleAlert}
+            />
+          </AlertDialog.Root>
         </S.ActionsContainer>
       </S.BottomContainer>
     </S.CardWrapper>

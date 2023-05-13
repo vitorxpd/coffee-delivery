@@ -57,3 +57,11 @@ export const SubmitButton = styled.button`
     background: ${(props) => props.theme['yellow-dark']};
   }
 `
+
+export const EmptyTitle = styled.h1`
+  margin-top: 4rem;
+  font-size: ${pxToRem(32)};
+  font-weight: 800;
+  line-height: 1.3;
+  color: ${(props) => props.theme['base-title']};
+`

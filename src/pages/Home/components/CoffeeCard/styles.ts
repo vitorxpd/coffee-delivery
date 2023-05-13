@@ -46,7 +46,7 @@ export const Title = styled.h3`
 
 export const Description = styled.p`
   margin-top: ${pxToRem(8)};
-  font-size: 14px;
+  font-size: ${pxToRem(14)};
   line-height: 1.3;
   color: ${(props) => props.theme['base-label']};
 `
