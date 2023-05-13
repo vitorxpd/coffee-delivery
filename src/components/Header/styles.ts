@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { pxToRem } from '../../utils/pxToRem'
+import { pxToRem } from '../../utils/helpers'
 
 export const HeaderWrapper = styled.header`
   padding: ${pxToRem(32)} 0;

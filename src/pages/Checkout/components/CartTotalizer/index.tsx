@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 
-import { priceFormatter } from '../../../../utils/formatter'
+import { priceFormatter } from '../../../../utils/helpers'
 
 import * as S from './styles'
 

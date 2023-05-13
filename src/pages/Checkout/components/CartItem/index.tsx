@@ -4,7 +4,7 @@ import { ActionTypes } from '../../../../reducers/coffeesReducer'
 import { Counter } from '../../../../components/Counter'
 import { Trash } from 'phosphor-react'
 
-import { priceFormatter } from '../../../../utils/formatter'
+import { priceFormatter } from '../../../../utils/helpers'
 
 import * as S from './styles'
 
