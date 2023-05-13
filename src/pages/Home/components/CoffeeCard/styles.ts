@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { pxToRem } from '../../../../utils/pxToRem'
+import { pxToRem } from '../../../../utils/helpers'
 
 export const CardWrapper = styled.li`
   width: ${pxToRem(256)};

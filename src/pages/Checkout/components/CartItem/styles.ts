@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { pxToRem } from '../../../../utils/pxToRem'
+import { pxToRem } from '../../../../utils/helpers'
 
 export const CartItemWrapper = styled.li`
   padding: ${pxToRem(8)} ${pxToRem(4)} ${pxToRem(24)} ${pxToRem(4)};

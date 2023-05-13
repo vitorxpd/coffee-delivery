@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { pxToRem } from '../../../../utils/pxToRem'
+import { pxToRem } from '../../../../utils/helpers'
 
 export const StampsWrapper = styled.div`
   margin-top: ${pxToRem(66)};
