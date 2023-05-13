@@ -85,7 +85,7 @@ export const ActionsContainer = styled.div`
   gap: ${pxToRem(8)};
 `
 
-export const CartButton = styled.button`
+export const BuyButton = styled.button`
   padding: ${pxToRem(8)};
   display: flex;
   justify-content: center;

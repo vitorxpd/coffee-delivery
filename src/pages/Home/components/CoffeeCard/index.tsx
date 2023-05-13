@@ -70,9 +70,9 @@ export function CoffeeCard({ id }: CoffeeCardProps) {
             onDecrementQuantity={decrementQuantity}
             onIncrementQuantity={incrementQuantity}
           />
-          <S.CartButton onClick={handleAddCoffeeToCart}>
+          <S.BuyButton onClick={handleAddCoffeeToCart}>
             <ShoppingCart size={22} />
-          </S.CartButton>
+          </S.BuyButton>
         </S.ActionsContainer>
       </S.BottomContainer>
     </S.CardWrapper>
