@@ -14,6 +14,7 @@ export const Content = styled(AlertDialog.Content)`
   position: fixed;
   top: 30%;
   left: 50%;
+  z-index: 9999;
   transform: translate(-50%, -50%);
   width: ${pxToRem(300)};
   padding: ${pxToRem(25)};
