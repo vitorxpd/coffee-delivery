@@ -8,13 +8,17 @@ interface AlertProps {
 }
 
 export function Alert({ description, onToggleAlert }: AlertProps) {
+  function handleToggleAlert() {
+    onToggleAlert()
+  }
+
   return (
     <AlertDialog.Portal>
       <AlertDialog.Overlay />
       <S.Content>
         <S.Title>Atenção!</S.Title>
         <S.Description>{description}</S.Description>
-        <S.Cancel onClick={onToggleAlert}>FECHAR</S.Cancel>
+        <S.Cancel onClick={handleToggleAlert}>OK</S.Cancel>
       </S.Content>
     </AlertDialog.Portal>
   )
