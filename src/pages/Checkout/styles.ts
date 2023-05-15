@@ -58,10 +58,9 @@ export const SubmitButton = styled.button`
   }
 `
 
-export const EmptyTitle = styled.h1`
-  margin-top: 4rem;
-  font-size: ${pxToRem(32)};
-  font-weight: 800;
+export const EmptyText = styled.p`
+  margin-top: 2rem;
+  font-weight: 400;
   line-height: 1.3;
   color: ${(props) => props.theme['base-title']};
 `

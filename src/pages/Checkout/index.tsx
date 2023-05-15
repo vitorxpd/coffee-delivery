@@ -58,7 +58,7 @@ export function Checkout() {
     setAlert(!alert)
   }
 
-  if (!cartQuantity) return <S.EmptyTitle>O carrinho está vazio.</S.EmptyTitle>
+  if (!cartQuantity) return <S.EmptyText>O carrinho está vazio.</S.EmptyText>
 
   return (
     <S.CheckoutWrapper>
