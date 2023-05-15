@@ -6,6 +6,10 @@ export const StampsWrapper = styled.div`
   display: grid;
   grid-template-columns: ${pxToRem(251)} auto;
   gap: 20px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: auto;
+  }
 `
 
 const VARIANT_COLORS = {
