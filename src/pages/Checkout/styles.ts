@@ -28,6 +28,10 @@ export const RegisterContainer = styled.div`
 
 export const CheckoutItemsContainer = styled.div`
   width: ${pxToRem(448)};
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `
 
 export const CartItemsContainer = styled.div`
