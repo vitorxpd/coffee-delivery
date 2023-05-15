@@ -10,6 +10,10 @@ export const MainArea = styled.div`
   padding-bottom: ${pxToRem(108)};
   display: flex;
   gap: ${pxToRem(56)};
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `
 
 export const Content = styled.div`
