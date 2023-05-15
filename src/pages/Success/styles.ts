@@ -28,7 +28,7 @@ export const InfoContent = styled.div`
   @media screen and (max-width: 1024px) {
     .success-image {
       margin-top: ${pxToRem(30)};
-      width: ${pxToRem(320)};
+      width: 100%;
     }
   }
 `
@@ -42,6 +42,10 @@ export const BoxWithBorder = styled.div`
   border-radius: 6px 36px;
   background: ${(props) => props.theme.background};
   position: relative;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 
   &::before {
     content: '';
