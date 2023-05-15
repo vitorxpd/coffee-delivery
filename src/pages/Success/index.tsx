@@ -55,7 +55,7 @@ export function Success() {
             </S.TextContent>
           </S.InfoBox>
         </S.BoxWithBorder>
-        <img src={success} alt="" />
+        <img src={success} alt="" className="success-image" />
       </S.InfoContent>
     </S.SuccessWrapper>
   )

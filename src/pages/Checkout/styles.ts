@@ -6,6 +6,7 @@ export const CheckoutWrapper = styled.main`
 
   form {
     display: flex;
+    flex-wrap: wrap;
     gap: ${pxToRem(32)};
   }
 `
@@ -19,6 +20,10 @@ export const FormTitle = styled.h2`
 
 export const RegisterContainer = styled.div`
   width: ${pxToRem(640)};
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `
 
 export const CheckoutItemsContainer = styled.div`

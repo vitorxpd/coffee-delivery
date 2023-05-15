@@ -40,6 +40,10 @@ export const PaymentMethodsContainer = styled.div`
   .RadioGroupRoot {
     display: flex;
     gap: ${pxToRem(12)};
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+    }
   }
 `
 
@@ -52,6 +56,10 @@ export const RadioContent = styled.div`
   background: ${(props) => props.theme['base-button']};
   border-radius: 6px;
   cursor: pointer;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 
   &:hover {
     background: ${(props) => props.theme['base-hover']};

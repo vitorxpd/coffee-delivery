@@ -42,6 +42,10 @@ export const InputsContainer = styled.div`
     'rua rua rua'
     'numero complemento complemento'
     'bairro cidade uf';
+
+  @media screen and (max-width: 1024px) {
+    display: block;
+  }
 `
 
 export const Input = styled.input`
@@ -56,6 +60,10 @@ export const Input = styled.input`
   border: 1px solid ${(props) => props.theme['base-button']};
   border-radius: 4px;
 
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+
   &::placeholder {
     color: ${(props) => props.theme['base-label']};
   }
@@ -67,46 +75,49 @@ export const Input = styled.input`
   &:not(:first-child) {
     margin-top: ${pxToRem(16)};
   }
+
   span {
     font-size: ${pxToRem(12)};
     font-style: italic;
   }
 
-  &[name='cep'] {
-    width: ${pxToRem(200)};
-    grid-area: cep;
-  }
+  @media screen and (min-width: 1025px) {
+    &[name='cep'] {
+      width: ${pxToRem(200)};
+      grid-area: cep;
+    }
 
-  &[name='rua'] {
-    width: 100%;
-    grid-area: rua;
-  }
+    &[name='rua'] {
+      width: 100%;
+      grid-area: rua;
+    }
 
-  &[name='numero'] {
-    width: ${pxToRem(200)};
-    margin-right: ${pxToRem(12)};
-    grid-area: numero;
-  }
+    &[name='numero'] {
+      width: ${pxToRem(200)};
+      margin-right: ${pxToRem(12)};
+      grid-area: numero;
+    }
 
-  &[name='complemento'] {
-    width: 100%;
-  }
+    &[name='complemento'] {
+      width: 100%;
+    }
 
-  &[name='bairro'] {
-    width: ${pxToRem(200)};
-    margin-right: ${pxToRem(12)};
-    grid-area: bairro;
-  }
+    &[name='bairro'] {
+      width: ${pxToRem(200)};
+      margin-right: ${pxToRem(12)};
+      grid-area: bairro;
+    }
 
-  &[name='cidade'] {
-    width: ${pxToRem(276)};
-    margin-right: ${pxToRem(12)};
-    grid-area: cidade;
-  }
+    &[name='cidade'] {
+      width: ${pxToRem(276)};
+      margin-right: ${pxToRem(12)};
+      grid-area: cidade;
+    }
 
-  &[name='uf'] {
-    width: ${pxToRem(60)};
-    grid-area: uf;
+    &[name='uf'] {
+      width: ${pxToRem(60)};
+      grid-area: uf;
+    }
   }
 `
 

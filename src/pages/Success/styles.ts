@@ -22,7 +22,15 @@ export const Subtitle = styled.p`
 export const InfoContent = styled.div`
   margin-top: ${pxToRem(40)};
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+
+  @media screen and (max-width: 1024px) {
+    .success-image {
+      margin-top: ${pxToRem(30)};
+      width: ${pxToRem(320)};
+    }
+  }
 `
 
 export const BoxWithBorder = styled.div`
