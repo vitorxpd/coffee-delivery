@@ -17,7 +17,7 @@ export function useDeviceInfo(): States {
         setIsMobile(true)
         setType('phone')
         break
-      case window.innerWidth > 1025 && window.innerWidth <= 1440:
+      case window.innerWidth > 1024 && window.innerWidth <= 1440:
         setType('laptop')
         break
       case window.innerWidth > 1440:
