@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Swiper } from 'swiper/react'
 import { pxToRem } from '../../../../utils/helpers'
 
 export const CoffeeListWrapper = styled.div`
@@ -19,4 +20,18 @@ export const ListWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: ${pxToRem(32)};
+`
+
+export const SwiperWrapper = styled(Swiper)`
+  &.swiper {
+    padding: ${pxToRem(18)} 0 ${pxToRem(50)};
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: ${(props) => props.theme['purple-dark']};
+  }
 `
