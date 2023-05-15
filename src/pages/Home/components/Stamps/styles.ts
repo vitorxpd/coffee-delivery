@@ -3,15 +3,9 @@ import { pxToRem } from '../../../../utils/helpers'
 
 export const StampsWrapper = styled.div`
   margin-top: ${pxToRem(66)};
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: ${pxToRem(251)} auto;
   gap: 20px;
-`
-
-export const StampContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${pxToRem(12)};
 `
 
 const VARIANT_COLORS = {

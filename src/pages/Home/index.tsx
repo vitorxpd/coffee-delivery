@@ -1,5 +1,4 @@
 import { Stamps } from './components/Stamps'
-import { MainTitle } from './components/MainTitle'
 import { CoffeeList } from './components/CoffeeList'
 
 import * as S from './styles'
@@ -10,7 +9,15 @@ export function Home() {
     <S.HomeWrapper>
       <S.MainArea>
         <S.Content>
-          <MainTitle />
+          <S.TitleContainer>
+            <S.Title>
+              Encontre o café perfeito para qualquer hora do dia
+            </S.Title>
+            <S.TextContent>
+              Com o Coffee Delivery você recebe seu café onde estiver, a
+              qualquer hora
+            </S.TextContent>
+          </S.TitleContainer>
           <Stamps />
         </S.Content>
         <img src={banner} alt="" />
