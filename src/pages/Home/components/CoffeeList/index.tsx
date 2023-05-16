@@ -1,18 +1,21 @@
 import { useContext } from 'react'
-import { SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 import { CoffeeCard } from '../CoffeeCard'
 import { useDeviceInfo } from '../../../../hooks/useDeviceInfo'
+import { Slide, Slider, SliderProps } from '../../../../components/Slider'
 
 import * as S from './styles'
-import 'swiper/css'
-import 'swiper/css/pagination'
 
 export function CoffeeList() {
   const [{ coffees }] = useContext(CoffeesContext)
 
   const { isMobile } = useDeviceInfo()
+
+  const settings: SliderProps = {
+    pagination: {
+      clickable: true,
+    },
+  }
 
   function coffeeLoop() {
     return coffees.map((coffee) => {
@@ -20,17 +23,17 @@ export function CoffeeList() {
     })
   }
 
-  function coffeeLoopCarousel() {
+  function coffeeLoopCarrousel() {
     return (
-      <S.SwiperWrapper modules={[Pagination]} pagination={{ clickable: true }}>
+      <Slider settings={settings}>
         {coffees.map((coffee) => {
           return (
-            <SwiperSlide key={coffee.id}>
+            <Slide key={coffee.id}>
               <CoffeeCard id={coffee.id} />
-            </SwiperSlide>
+            </Slide>
           )
         })}
-      </S.SwiperWrapper>
+      </Slider>
     )
   }
 
@@ -38,7 +41,7 @@ export function CoffeeList() {
     <S.CoffeeListWrapper>
       <S.ListTitle>Nossos cafés</S.ListTitle>
       <S.ListWrapper>
-        {!isMobile ? coffeeLoop() : coffeeLoopCarousel()}
+        {!isMobile ? coffeeLoop() : coffeeLoopCarrousel()}
       </S.ListWrapper>
     </S.CoffeeListWrapper>
   )
