@@ -17,12 +17,6 @@ export function CoffeeList() {
     },
   }
 
-  function coffeeLoop() {
-    return coffees.map((coffee) => {
-      return <CoffeeCard id={coffee.id} key={coffee.id} />
-    })
-  }
-
   function coffeeLoopCarrousel() {
     return (
       <Slider settings={settings}>
@@ -37,11 +31,17 @@ export function CoffeeList() {
     )
   }
 
+  function coffeeLoop() {
+    return coffees.map((coffee) => {
+      return <CoffeeCard id={coffee.id} key={coffee.id} />
+    })
+  }
+
   return (
     <S.CoffeeListWrapper>
       <S.ListTitle>Nossos cafés</S.ListTitle>
       <S.ListWrapper>
-        {!isMobile ? coffeeLoop() : coffeeLoopCarrousel()}
+        {isMobile ? coffeeLoopCarrousel() : coffeeLoop()}
       </S.ListWrapper>
     </S.CoffeeListWrapper>
   )
