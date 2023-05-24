@@ -1,15 +1,12 @@
 import { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 import { CoffeeCard } from '../CoffeeCard'
-import { useDeviceInfo } from '../../../../hooks/useDeviceInfo'
 import { Slide, Slider, SliderProps } from '../../../../components/Slider'
 
 import * as S from './styles'
 
 export function CoffeeList() {
-  const [{ coffees }] = useContext(CoffeesContext)
-
-  const { isMobile } = useDeviceInfo()
+  const [{ coffees, isMobile }] = useContext(CoffeesContext)
 
   const settings: SliderProps = {
     pagination: {

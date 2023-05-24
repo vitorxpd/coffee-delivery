@@ -28,6 +28,7 @@ export interface CoffeesState {
   cartQuantity: number
   totalizers: Totalizers
   userData: UserData
+  isMobile: boolean
 }
 
 export enum ActionTypes {

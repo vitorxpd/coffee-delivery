@@ -31,6 +31,7 @@ const coffeesInitialState: CoffeesState = {
     uf: '',
     complemento: '',
   },
+  isMobile: window.innerWidth <= 1024,
 }
 
 export const CoffeesContext = createContext<
