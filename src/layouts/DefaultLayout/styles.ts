@@ -8,10 +8,6 @@ export const LayoutWrapper = styled.div`
   padding: 0 ${pxToRem(160)};
 
   @media screen and (max-width: 1440px) {
-    padding: 0 ${pxToRem(20)};
-  }
-
-  @media screen and (max-width: 1024px) {
-    padding: 0 ${pxToRem(8)};
+    padding: 0 ${pxToRem(16)};
   }
 `
