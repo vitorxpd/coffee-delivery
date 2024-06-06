@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Location } from './components/Location'
 import { Minicart } from './components/Minicart'
-import { useDeviceInfo } from '../../hooks/useDeviceInfo'
 
 import * as S from './styles'
 import logo from '../../assets/logo.svg'
