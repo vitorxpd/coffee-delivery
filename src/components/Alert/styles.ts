@@ -1,6 +1,18 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import * as AlertDialog from '@radix-ui/react-alert-dialog'
 import { pxToRem } from '../../utils/helpers'
+
+const contentShow = keyframes`
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+`
 
 export const Content = styled(AlertDialog.Content)`
   display: flex;
@@ -18,18 +30,7 @@ export const Content = styled(AlertDialog.Content)`
   transform: translate(-50%, -50%);
   width: ${pxToRem(300)};
   padding: ${pxToRem(25)};
-  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-
-  @keyframes contentShow {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -48%) scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
+  animation: ${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
 `
 
 export const Title = styled(AlertDialog.Title)`
