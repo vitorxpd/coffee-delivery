@@ -1,44 +1,36 @@
 import { useContext } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+
 import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 import { CoffeeCard } from '../CoffeeCard'
-import { Slide, Slider, SliderProps } from '../../../../components/Slider'
 
 import * as S from './styles'
+import { Navigation } from './components/Navigation'
 
 export function CoffeeList() {
   const [{ coffees, isMobile }] = useContext(CoffeesContext)
-
-  const settings: SliderProps = {
-    pagination: {
-      clickable: true,
-    },
-  }
-
-  function coffeeLoopCarrousel() {
-    return (
-      <Slider settings={settings}>
-        {coffees.map((coffee) => {
-          return (
-            <Slide key={coffee.id}>
-              <CoffeeCard id={coffee.id} />
-            </Slide>
-          )
-        })}
-      </Slider>
-    )
-  }
-
-  function coffeeLoop() {
-    return coffees.map((coffee) => {
-      return <CoffeeCard id={coffee.id} key={coffee.id} />
-    })
-  }
 
   return (
     <S.CoffeeListWrapper>
       <S.ListTitle>Nossos cafés</S.ListTitle>
       <S.ListWrapper>
-        {isMobile ? coffeeLoopCarrousel() : coffeeLoop()}
+        {isMobile && (
+          <Swiper>
+            <Navigation />
+
+            {coffees.map((coffee) => (
+              <SwiperSlide key={coffee.id}>
+                <CoffeeCard id={coffee.id} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+
+        {!isMobile &&
+          coffees.map((coffee) => (
+            <CoffeeCard id={coffee.id} key={coffee.id} />
+          ))}
       </S.ListWrapper>
     </S.CoffeeListWrapper>
   )
